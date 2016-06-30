@@ -1,0 +1,10 @@
+
+<div data-ng-controller="messageController">
+    <div class="alert alert-{{alert.type}} alert-dismissable" ng-repeat="alert in modalAlerts">
+        <i class="fa" ng-class="{ danger : 'fa-ban', info : 'fa-info', success : 'fa-check', warning : 'fa-warning' }[alert.type]"></i>
+        <button type="button" class="close" data-ng-click="closeModalMessage()">
+	        <span aria-hidden="true">x</span>
+	    </button>
+        <span data-i18n="{{alert.msg}}"></span>
+    </div>
+</div>

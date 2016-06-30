@@ -1,0 +1,94 @@
+package net.myapp.springsecurity.dal.db.utils;
+
+public abstract class Table {
+	
+	public static final String BILLCOLLECTION = "BillCollection";
+	public static final String CHEQUECOLLECTION = "ChequeCollection";
+	public static final String CHEQUEDETAIL = "ChequeDetail";
+	public static final String TRANSLOG = "TransLog";
+	public static final String CLIENT_RESPONSELOG = "ClientResponseLog";
+	public static final String CLIENT_REQUESTLOG = "ClientRequestLog";
+	public static final String RESPONSELOG = "ResponseLog";
+	public static final String REQUESTLOG = "RequestLog";
+	public static final String FINGERPRINTLOG = "FingerPrintLog";
+	public static final String FINGERPRINT = "FingerPrint";
+	public static final String CUSTOMERQRCARDLOG = "CustomerQRCardLog";
+	public static final String CUSTOMERQRCARD = "CustomerQRCard";
+	public static final String AGENT_DEPOSIT_REQUEST = "AgentDepositRequest";
+	public static final String AGENT_WITHDRAWAL_REQUEST = "AgentWithdrawalRequest";
+	public static final String AUDITLOG = "AuditLog";
+	public static final String PASSWORD_HISTORY = "PasswordHistory";
+	public static final String ACCOUNT = "Account";
+	public static final String CUSTOMER = "Customer";
+	public static final String PRODUCT = "Product";
+	public static final String AGENT = "Agent";
+	public static final String AGENT_DRAFT = "AgentDraft";
+	public static final String AGENT_ACCOUNT = "AgentAccount";
+	public static final String AGENT_ACCOUNT_DRAFT = "AgentAccountDraft";
+	public static final String SERVICE_POINT = "ServicePoint";
+	public static final String SERVICE_POINT_DRAFT = "ServicePointDraft";
+	public static final String BRANCH = "Branch";
+	public static final String BANK = "Bank";
+	public static final String AGENT_CATEGORY = "AgentCategory";
+	public static final String LOGINTRAIL = "LoginTrail";
+	public static final String LOGIN = "Login";
+	public static final String ROLE = "Role";
+	public static final String LEFTMENU = "LeftMenu";
+	public static final String TOPMENU = "TopMenu";
+	public static final String META_PROPERTY = "MetaProperty";
+	public static final String ACCOUNT_CLOSINGLOG = "AccountClosingLog";
+	public static final String AGENT_SERVICE_STAFF = "AgentServiceStaff";
+	public static final String AGENT_SERVICE_STAFF_DRAFT = "AgentServiceStaffDraft";
+	public static final String DirectSalesTeam = "DirectSalesTeam";
+	public static final String DirectSalesTeamDraft = "DirectSalesTeamDraft";
+	public static final String DSTOutlet = "DSTOutlet";
+	public static final String DSTOutletDraft = "DSTOutletDraft";
+	public static final String SERVICE_TERMINAL = "ServiceTerminal";
+	public static final String CHARGE_MODEL = "ChargeModel";
+	public static final String SEGMENT_ITEM = "SegmentItem";
+	public static final String CHARGE_MODEL_DEF = "ChargeModelDef";	
+	public static final String CHARGE_MODEL_ITEM = "ChargeModelItem";
+	public static final String GL_MASTER_DATA = "GLMasterData";
+	public static final String DDL_METADATA = "DDLMetaData";
+	public static final String CUSTOMER_ACCOUNT = "CustomerAccount";
+	public static final String SIGNATORY_INFO = "SignatoryInfo";
+	public static final String PASSWORD_RESET_LOG = "PasswordResetLog";
+	public static final String SMSLOG = "SMSLog";
+	public static final String REMITTANCE = "Remittance";
+	public static final String BILLTYPE = "BillType";
+	public static final String UTILITY_COMPANY = "UtilityCompany";
+	public static final String COMPANY_ZONE = "Companyzone";
+	public static final String ZONE_BRANCH = "ZoneBranch";
+	public static final String ZONE_AGENT = "ZoneAgent";
+	public static final String AGENT_OUTLET_AREA = "OutletArea";
+	public static final String AGENT_OUTLET_ZONE = "OutletZone";
+	public static final String ACCOUNT_TRANS_PROFILE = "AccountTransactionProfile";
+	public static final String OUTLET_TRANS_PROFILE = "OutletTransactionProfile";
+	public static final String PRODUCT_ACC_TRANS_PROFILE = "ProductAccTransProfile";
+	public static final String TAG_LIB = "TagDictionary";
+	public static final String TAG_LIB_OID = "tagLibID";
+	public static final String TAG_LINK = "TagLink";
+	public static final String TAG_LINK_DRAFT = "TagLinkDraft";
+	public static final String PASSWORD_POLICY = "PasswordPolicy";
+	public static final String CALENDAR = "Calendar";
+	public static final String CALENDAR_DETAIL = "CalendarDetails";
+	public static final String CBS_ACCOUNT = "cbsaccount";
+	public static final String ACCOUNT_BALANCE_HISTORY = "accountbalancehistory";
+	public static final String DAILY_RAW_LOG = "dailyrawlog";
+	
+	// Column name start
+	public static final String PASSWORD_POLICY_ID = "passwordPolicyID";
+	public static final String CALENDAR_ID = "calendarID";
+	public static final String CALENDAR_DETAIL_ID = "calendarDetailID";
+	public static final String ACCOOUNT_TPID = "accountTpID";
+	public static final String PRODUCT_ACCOOUNT_TPID = "productAccTpID";
+	public static final String OUTLET_TPID = "outletTpID";
+	public static final String TAGLIBID = "tagLibID";
+	public static final String BILL_TYPE_ID = "billtypeID";
+	public static final String OUTLET_AREA_ID = "outletAreaID";
+	public static final String OUTLET_ZONE_ID = "outletZoneID";
+	public static final String COMPANY_CODE = "companyCode";
+	public static final String OID = "OID";
+	// Column name end
+	
+}

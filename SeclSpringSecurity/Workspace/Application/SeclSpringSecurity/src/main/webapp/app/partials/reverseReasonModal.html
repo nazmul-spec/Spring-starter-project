@@ -1,0 +1,22 @@
+
+
+<div class="modal-header modal-header-confirm">
+	<h4 class="modal-title ng-binding">
+		{{modalOptions.headerText}}
+	</h4>
+</div>
+
+<div class="modal-body">
+  <h4> <label>{{modalOptions.bodyText}}</label> </h4> 
+  
+   	<div class="form-group">
+	     <label for="inputReverseReason"><span class="red"> * </span><span  i18n="ReverseReason"></span></label>
+	     <textarea data-ng-model="modalOptions.data.rejectionCause" type="text" class="form-control" placeholder="{{ 'ReverseReason' | i18n }}" id="inputReverseReason"></textarea>
+	</div> 
+</div>
+
+		
+<div class="modal-footer footer-noborder">	
+	<button class="btn btn-deafult" ng-click="modalOptions.close()"><i class="fa fa-times"></i>&nbsp; {{modalOptions.closeButtonText}}</button>
+	<button type="submit" class="btn btn-warning" ng-click="modalOptions.ok()"><i class="glyphicon glyphicon-ok"></i>&nbsp;{{modalOptions.actionButtonText}}</button>
+</div>

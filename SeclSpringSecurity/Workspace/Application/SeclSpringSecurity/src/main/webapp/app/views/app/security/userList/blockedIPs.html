@@ -1,0 +1,184 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+	<h1 i18n="{{title.value}}"></h1>
+	<ol class="breadcrumb">
+		<li><a style="cursor: pointer;"
+			data-ng-controller="appLogoController" data-ng-click="goToHomePage()">
+				<!-- <i class="fa fa-dashboard"></i > --> <span i18n="Home"></span>
+		</a></li>
+		<li class="active" i18n="{{title.value}}"></li>
+	</ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+	<!-- Content Options -->
+	<section class="content invoice">
+		<div class="row">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3" data-ng-hide="true">
+				<select data-ng-model="combo.bankID" type="text"
+					class="ContentOptions" ui-select2
+					style="border: thin solid #cccccc;"
+					placeholder="{{ 'SelectBank' | i18n }}" id="selectBankName"
+					data-ng-disabled="true" data-ng-change="loadBranchInformation()">
+					<option></option>
+					<option data-ng-selected="{{bankInfo.bankID == combo.bankID}}"
+						data-ng-repeat="bankInfo in bankInfos" value="{{bankInfo.bankID}}">{{bankInfo.bankName}}</option>
+				</select>
+			</div>
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+			</div>
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+				<form class="form-inline" role="form">
+					<div class="form-group ComboItem">
+						<label>{{itemRows}} : </label> <select class="form-control"
+							data-ng-model="pageSize">
+							<option>9</option>
+							<option>10</option>
+							<option>20</option>
+							<option>30</option>
+						</select>
+					</div>
+				</form>
+			</div>
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+				<input type="text" name="table_search"
+					class="form-control input-sm ContentOptions"
+					placeholder="{{ 'Search' | i18n }}" data-ng-model="searchText">
+			</div>
+		</div>
+	</section>
+	<!-- End Content Options -->
+
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="nav-tabs-custom">
+				<!-- Tab menu -->
+				<div>
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#card-view" data-toggle="tab">
+								<span class="glyphicon glyphicon-credit-card"></span> {{
+								cardView }}
+						</a></li>
+						<li class=""><a href="#list-view" data-toggle="tab"> <span
+								class="glyphicon glyphicon-align-justify"></span> {{ listView }}
+						</a></li>
+					</ul>
+				</div>
+				<!-- End Tab menu -->
+				<div class="tab-content">
+					<!-- Msg Location -->
+					<div class="row" style="margin-top: 20px;">
+						<div class="col-xs-12">
+							<div data-ng-include="messagePageLocation"></div>
+						</div>
+					</div>
+					<!-- End Msg Location -->
+
+					<!-- #list-view -->
+					<div class="tab-pane" id="list-view">
+						<section id="list-table">
+							<div data-ng-hide="totalRecords == 0" class="box-body table-responsive">
+								<table data-ng-table="tableParams"
+									class="table table-condensed table-hover">
+									<thead>
+										<tr>
+											<th ng-repeat="column in columns" ng-show="column.visible"
+												class="text-left sortable"
+												ng-class="{
+								                    'sort-asc': tableParams.isSortBy(column.field, 'asc'),
+								                    'sort-desc': tableParams.isSortBy(column.field, 'desc')}"
+												ng-click="tableParams.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')">
+												<div>{{column.title}}</div>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr data-ng-repeat="machine in $data">
+											<td data-ng-click="unblock(machine)">{{machine.machineIP}}</td>
+											<td data-ng-click="unblock(machine)">{{machine.loginID}}</td>
+											<td data-ng-click="unblock(machine)">{{machine.roleID}}</td>
+											<td data-ng-click="unblock(machine)">{{machine.signinDate}}</td>
+											<td data-ng-click="unblock(machine)">{{machine.signoutDate}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</section>
+					</div>
+					<!-- #card-view-->
+					<div class="tab-pane active" id="card-view">
+						<div class="row container">
+							<div class="span3"
+								data-ng-repeat="machine in cardMachines | limitTo : pageSize">
+								<!-- Primary box -->
+								<div class="box box-solid box-primary">
+									<div class="box-header">
+										<h3 class="box-title" style="font-size: 15px;">{{machine.machineIP}}
+										</h3>
+									</div>
+									<div class="box-body">
+										<div class="cardBody">
+											<table class="table table-condensed">
+												<tbody>
+													<tr>
+														<td><span>{{columns[1].title}}</span></td>
+														<td class="text-right"><span>{{ machine.loginID}}</span></td>
+													</tr>
+													<tr>
+														<td><span>{{columns[2].title}}</span></td>
+														<td class="text-right"><span>{{machine.roleID}}</span></td>
+													</tr>
+													<tr>
+														<td><span>{{columns[3].title}}</span></td>
+														<td class="text-right"><span>{{machine.signinDate}}</span></td>
+													</tr>													
+													<tr>
+														<td><span>{{columns[4].title}}</span></td>
+														<td class="text-right"><span>{{machine.signoutDate}}</span></td>
+													</tr>
+													<tr>
+					                               		<td colspan="2" class="text-center">
+					                               			<button class="btn btn-primary btn-sm" data-ng-click="unblock(machine)"><span  i18n = "unblockIP"> </button>
+					                               			
+					                               		</td>					                               		
+					                           		</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<!-- /.box-body -->
+								</div>
+								<!-- /.box -->
+							</div>
+						</div>
+					</div>
+					<!-- /#card-view -->
+					<!-- Page Item Text -->
+					<div class="row container show-hide-animation" data-ng-show="totalRecords == 0">
+						<div class="span12">
+							<h4 i18n="{{noDataText}}"></h4>
+						</div>
+					</div>
+					<div class="row container show-hide-animation">
+						<div class="span12">
+							<pagination data-ng-model="currentPage"
+								data-total-items="totalRecords" data-ng-click = "pageChanged()"
+								data-boundary-links="true" data-max-size="itemsPerPage"
+								data-items-per-page="pageSize"></pagination>
+							<h5>{{ pageItemText }}</h5>
+						</div>
+					</div>
+					<!-- End Page Item Text -->
+
+				</div>
+				<!-- /.tab-content -->
+			</div>
+			<!-- /.nav-tabs-custom -->
+		</div>
+		<!-- /.col -->
+	</div>
+</section>
+
+

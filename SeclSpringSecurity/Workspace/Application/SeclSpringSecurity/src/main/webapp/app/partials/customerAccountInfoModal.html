@@ -1,0 +1,137 @@
+
+
+<div class="modal-header modal-header-confirm">
+	<h4 class="modal-title ng-binding">
+		{{modalOptions.headerText}}
+	</h4>
+</div>
+<div class="row" style="margin: 10px 5px 0px 5px;">
+		<div class="col-xs-12">
+			<div data-ng-include="modalMessagePageLocation"></div>
+		</div>
+</div>
+
+<div class="modal-body" data-ng-controller="accountCreatorBMController"> <!-- customerAccountInfoModalController -->
+  <div class="row" style="margin-left: 0px">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+             <select data-ng-model="modal.customerType" type="text" class="form-control select2-offscreen" ui-select2 placeholder="{{ 'customerType' | i18n }}" id="CustomerType"  data-ng-change="loadSearchItem(modal.customerType)">
+                  <option></option>
+                  <option data-ng-repeat="custType in modalOptions.customerTypeList" value="{{custType.ID}}">{{custType.name}}</option>
+             </select>
+    	</div>
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+		    <select data-ng-model="modal.searchItem" id="searchItem" ui-select2="" class="form-control select2-offscreen" placeholder="Select Search Item">
+                  <option value=""></option>		                  
+                  <option data-ng-repeat="searchIt in customerSearchItem" value="{{searchIt.ID}}">{{searchIt.name}}</option>
+            </select>
+    	</div>
+    	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-3" >
+           	<input data-ng-model="modal.searchText" type="text" class="form-control" id="searchItemText" placeholder="{{'Search' | i18n }}">
+		</div>
+    	<div class="col-xs-12 col-sm-2" >
+           	<button class="btn btn-success FormOptions" ng-click="viewCustomerInfo(modal)">View</button>
+		</div>
+</div><!-- End row -->
+<div style="padding: 10px"></div>
+ <div class="row">
+  <div class="col-md-12">
+  <!-- <fieldset class="scheduler-border"><legend class="scheduler-border">Customer Information</legend> -->
+  	 
+  	 <div class="col-md-8">
+	     <form role="form">
+		  <div class="box-body">
+			   	 <div class="form-control col-xs-12 col-sm-6 col-lg-6">
+					<label for="customerID"><span i18n="Customer_ID"></label>&nbsp; &nbsp;
+					<label>{{customer.customerID}}</label> 
+					
+				</div>
+				<div class="form-control col-xs-12 col-sm-6 col-lg-6">
+					<label for="customerName"><span i18n="customerName"></label>&nbsp; &nbsp;
+					<label>{{customer.customerName}}</label>
+					
+				</div>
+				<div class="form-control col-xs-12 col-sm-6 col-lg-6">
+					<label for="nationalID"><span i18n="NationalIDNo"></label>&nbsp; &nbsp;
+					<label>{{customer.individualPrivateCustomer.individualCustFullInfo.individualCustUniqueInfo.nationalID}}</label> 
+				</div>
+				<!-- <div class="form-control col-xs-12 col-sm-6 col-lg-6">
+					<label for="passportNo"><span i18n="PassportNo">Passport No:</label>&nbsp; &nbsp;
+					<label>{{customer.passportNo}}</label> 
+				</div> -->
+				<div class="form-control col-xs-12 col-sm-6 col-lg-6">
+					<label for="customerStatus"><span i18n="Status"></label>&nbsp; &nbsp;
+					<label>
+						<span data-ng-if="customer.customerStatus == 'A'">Active</span>
+						<span data-ng-if="customer.customerStatus == 'BA'">Approve</span>
+						<span data-ng-if="customer.customerStatus == 'BR'" class="red">Reject</span>
+						<span data-ng-if="customer.customerStatus == 'I'"  class="red">Inactive</span>
+						<span data-ng-if="customer.customerStatus == 'AS'">Submitted</span>
+						<span data-ng-if="customer.customerStatus == 'BM'">Entered/ Edited</span>
+						<span data-ng-if="customer.customerStatus == 'BC'">Reviewed</span>
+					</label>
+				</div>
+		  </div>	
+		</form>
+	</div>
+  	<div class="col-md-2 text-center">
+  		<img style = "width: 120px; height: 137px;background: #3c8dbc;" ng-src="{{'images/customer/' + customer.customerID + '.jpg'}}" err-src="images/default_avater.jpg" class="pull-left" alt="User Image">
+  	</div>
+	<div class="col-xs-12 col-sm-12 col-lg-12"  align="right" style="padding: 10px 0 10px 0">
+		<button class="btn btn-default" ng-click="addToList(customer, modalOptions)">Add To List</button>
+	</div>
+<!-- </fieldset> -->
+ </div>
+</div><!-- End row -->
+<div class="row table-responsive">
+   <table class="table table-bordered">
+     <thead>
+     	 <th i18n="Serial_No">Serial No.</th>
+         <th i18n="Customer_ID"></th>
+         <th i18n="customerName"></th>
+         <th i18n="NationalIDNo"></th>
+         <th i18n="Is_Mandatroy"></th>
+         <th i18n="Can_Authenticate"></th>
+         <th i18n="Photo"></th>
+         <th i18n="Remove"></th>
+     </thead>
+     <tbody ui:sortable ng:model="modalOptions.data">
+     	<tr data-ng-repeat="cust in modalOptions.data" style="cursor: move;">
+     		<td>{{$index + 1}}</td>
+	        <td>{{cust.customerID}}</td>
+	        <td>{{cust.customerName}}</td>
+	        <td>{{cust.individualPrivateCustomer.individualCustFullInfo.individualCustUniqueInfo.nationalID}}</td>
+	        <td class="text-center">
+	        	<checkbox
+	        		class="btn-info"
+				    ng-model="cust.isMandatoryBiometric"
+				    name="isMandatoryBiometric" 
+				></checkbox>
+	        </td>
+	        <td class="text-center">
+	        	<checkbox
+	        		class="btn-info"
+				    ng-model="cust.isBiometricEnable"
+				    name="isMandatoryBiometric" 
+				></checkbox>
+	        </td>
+	        <td class="text-center">
+	        	<img style = "width: 50px; height: 60px;background: #3c8dbc;" ng-src="{{'images/customer/' + cust.customerID + '.jpg'}}" class="" alt="User Image">
+	        </td>
+	        <td class="text-center">
+	        	<a href="javascript:" data-ng-click="removeCustomer($index, modalOptions)">
+		          <span class="glyphicon glyphicon-remove"></span>
+		        </a>
+	        </td>
+       </tr>
+     </tbody>
+   </table>
+ 
+</div>
+
+</div> <!-- End Body -->
+ <div class="modal-footer">
+		
+	<button class="btn btn-deafult" ng-click="modalOptions.close()"><i class="fa fa-times"></i>&nbsp; {{modalOptions.closeButtonText}}</button>
+	<button type="submit" class="btn btn-warning" 	ng-click="modalOptions.ok(modalOptions.data)"><i class="glyphicon glyphicon-ok"></i>&nbsp;{{modalOptions.actionButtonText}}</button>
+
+</div>

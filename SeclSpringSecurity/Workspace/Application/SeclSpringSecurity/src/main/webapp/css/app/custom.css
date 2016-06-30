@@ -1,0 +1,359 @@
+.ComboItem{
+	float: right;
+	margin-top:3px;
+}
+@media (max-width: 767px) {
+  .ComboItem {
+    	float: none;
+	}
+}
+
+
+.ContentOptions{
+	min-width:100%; 
+	height: 34px;
+	margin-left:2px;
+	margin-right:2px;
+	margin-top:3px;
+	margin-bottom:3px;
+}
+@media (max-width: 767px) {
+  .ContentOptions {
+		max-width:80%;
+	}
+}
+
+
+.FormOptions{
+	min-width:100%; 
+	height: 34px;
+	margin-left:2px;
+	margin-right:2px;
+}
+
+.nameWithImage{
+	font-weight: bolder;
+	font-size: medium;
+	width: 75%;
+	float: right;
+	margin-top: 5%;
+    padding-left: 1%;
+    text-align: right;
+}
+
+@media (max-width: 767px) {
+  .FormOptions {
+		max-width:80%; 
+		margin-top:3px;
+		margin-bottom:3px;
+	}
+}
+
+.ChartElements{
+	float:left;
+    position:relative;
+	min-width:90%; 
+	margin-left: 5%;
+	margin-top: -1.5%;
+}
+@media (max-width: 767px) {
+  .ChartElements {
+		max-width:80%; 
+	}
+}
+
+
+.box.box-solid.collapsed-box .box-header {
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+}
+  
+.panel-heading a.collapsed:after {
+	cursor:pointer;
+    content: "\e080";
+}
+
+.panel-heading a:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e114";    
+    float: right; 
+    color: grey; 
+}
+
+
+
+/* Set the fixed height of the footer here */
+#sticky_footer_push{
+  height: 100px;
+}
+#sticky_footer {
+  height: 60px;
+}
+#sticky_footer {
+  background-color: #f5f5f5;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+  #sticky_footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+#outPopUp{
+     position:absolute;
+     width:300px;
+     height:200px;
+     z-index:15;
+     top:50%;
+     left:50%;
+     margin:-100px 0 0 -150px;
+}
+
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+/*small text pull right*/
+.text-pull-right {
+	float: right;
+	margin-right:1%;
+	margin-top:1%;
+	font-size: 85%;
+	cursor: pointer;
+}
+
+/**** read-only Datepicker ****/
+.read-only-datepicker {
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.428571429;
+	color: #555555;
+	vertical-align: middle;
+	background-color: #ffffff;
+	background-image: none;
+	border: 1px solid #cccccc;
+	border-radius: 0px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-webkit-transition: border-color ease-in-out 0.15s, box-shadow
+		ease-in-out 0.15s;
+	transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.read-only-datepicker:focus {
+	border-color: #66afe9;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px
+		rgba(102, 175, 233, 0.6);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px
+		rgba(102, 175, 233, 0.6);
+}
+
+.read-only-datepicker:-moz-placeholder {
+	color: #999999;
+}
+
+.read-only-datepicker::-moz-placeholder {
+	color: #999999;
+	opacity: 1;
+}
+
+.read-only-datepicker:-ms-input-placeholder {
+	color: #999999;
+}
+
+.read-only-datepicker::-webkit-input-placeholder {
+	color: #999999;
+}
+
+.read-only-datepicker[readonly] {
+	cursor: pointer;
+}
+
+.border-bottom-gray {
+	border-bottom: 1px solid #f4f4f4 !important;
+}
+
+.fa-folder-color{
+	color : #ECDF5A;
+}
+
+.read-only-clock {
+	background-color: #ffffff !important;
+	color: #999999;
+	cursor: pointer !important;
+}
+
+/***** Highlight Row ******/
+.highlight-row{
+	background-color: #FFFF99;
+}
+
+
+/* Set the fixed height of the footer here */
+#Box_footer_push{
+  height: 50px;
+}
+#sticky_footer {
+  height: 30px;
+}
+#sticky_footer {
+  background-color: #f5f5f5;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+  #sticky_footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+
+
+<!--for image show larger on hover -->
+#picture {width:100px; height: 250px; background-color:#ffffff; }
+#picture a { float: right; clear:right;}
+#picture a.small, #picture a.small:visited { display:block; text-decoration:none; background:#ffffff; top:0; left:0; border:0;}
+#picture a img {border:0;}
+#picture a.small:hover {text-decoration:none; background-color:#ffffff; color:#ffffff;}
+#picture a .large {display:block; position:absolute; width:0; height:0; border:0; top:0; left:0; }
+#picture a.small:hover .large {display:block; position:absolute; top: -80px; left:-5px; width:300px; height:300px; }
+
+#cheque_front_back {background-color:#ffffff; }
+#cheque_front_back a { float: right; clear:right;}
+#cheque_front_back a.small, #cheque_front_back a.small:visited { width: auto; height: auto; display:block; text-decoration:none; background:#ffffff; top:0; left:0; border:0; margin-top: 5px;margin-bottom: 5px;}
+#cheque_front_back a img {border:0; width: 90%; height: 90%;float: right; clear:right;} 
+#cheque_front_back a.small:hover {text-decoration:none; background-color:#ffffff; color:#ffffff;}
+#cheque_front_back a .large {display:block; position:absolute; width:0; height:0; border:0; top:0; left:0; }
+#cheque_front_back a.small:hover .large {display:block; position:absolute; top: 25px; left:-25px; width:100%; height:100%; }
+
+#cheque_back a { float: right; clear:right;}
+#cheque_back a.small, #cheque_back a.small:visited { display:block; text-decoration:none; background:#ffffff; top:0; left:0; border:0;}
+#cheque_back a img {border:0; width: 50%; height: 50%;}
+#cheque_back a.small:hover {text-decoration:none; background-color:#000000; color:#000000;}
+#cheque_back a .large {display:block; position:absolute; width:0; height:0; border:0; top:0; left:0; }
+#cheque_back a.small:hover .large {display:block; position:absolute; top: -80px; left:-5px; width:100%; height:100%; }
+
+
+
+.custome_multiselect_checkbox {
+    display: block;
+    min-height: 20px;
+    padding-left: 15px !important; 
+    margin-top: 1px;
+    margin-bottom: 1px;
+    vertical-align: middle;
+}
+
+.content-handson {
+    padding: 20px 20px;
+    background: #f9f9f9;
+}
+.box-info-handson {
+    border-top: 2px solid #8574AD !important;
+}
+.box-info-handson {
+    border-top: 2px solid #8574AD !important;
+}
+row .box-header-handson {
+    position: relative;
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 0;
+    -moz-border-radius-bottomleft: 0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom: 0px solid #f4f4f4;
+    color: #444;
+    padding-bottom: 10px;
+    min-width: 300px;
+}
+.rqMark {
+    color: #FC6A6C;
+    font-size: 6px;
+    opacity: 1;
+}
+
+.handsonTopButtonDiv {
+    margin: 10px 0px 10px 3px;
+}
+	
+.timesheetDateinput {height:31px;min-width:167px;max-width:230px;}
+
+.timesheetNext {height:30px; width: 45px;}
+
+.timesheetShow {margin:-4px 0px 0px 5px;height:29px;width:100px;padding-top:3px;color:white;font-weight: bold; background-color:#367FA9;}
+
+.timesheetSubmit {margin-top:10px;}
+
+.timesheetFooter {height:50px;max-width:1130px;}
+
+.buttonDistance {margin-left:5px}
+
+.timesheetCalanderTotal {float:right;margin-top:1em;}/* margin-top:28px */
+
+.totalSpan {float:right;color:#685E59}
+
+.totalFont {font-weight: bolder;}
+
+.fully_colored_holiday,
+.fully_colored_holidaydiv,
+.fully_colored_holidayspan{
+     background:#FF8C8C !important;
+}
+
+
+.fully_colored_weekend{
+     background:#E1E1E1 !important;
+     border: 1px solid #ccc !important;
+}
+
+.custom_btn_sm {
+    width: 60px !important;
+}
+
+.clockpicker-popover {
+	z-index: 3000;
+}
+
+.body-bg-img { 
+  background: url(../images/city_bank.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.sticky-foot-bg-color {
+	background-color: #F9F9F9;
+}
+
+.html-bg-color {
+    background-color: #F9F9F9;
+}

@@ -1,0 +1,124 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+	<h1 style="display: inline;" i18n="{{title.value}}"></h1>
+	<h1 style="display: inline;" data-ng-hide="title.id == 'nan'"> : {{title.id}}</h1>
+	
+	<ol class="breadcrumb">
+		<li>
+			<a style="cursor: pointer;" data-ng-controller="appLogoController" data-ng-click="goToHomePage()">
+				<!-- <i class="fa fa-dashboard"></i > -->
+					<span  i18n="Home"></span>
+			</a>
+		</li>
+		
+		<li style="cursor: pointer;" i18n="{{title.value}}" data-ng-click="goBack()"></li>
+		<li class="active" data-ng-hide="title.id == 'nan'"><span>{{title.id}}</span></li>
+		<li class="active" data-ng-show="title.id == 'nan'" i18n="btn_NewAdd"></li>
+	</ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+	<div class="row" style="margin-top: 20px;">
+  		<div class="col-xs-12">
+   			<div data-ng-include="messagePageLocation"></div>
+  		</div>
+ 	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="box box-primary">
+               <!-- form start -->
+               <form role="form">
+                   <div class="box-body">
+                   
+					<div class="form-group"  data-ng-show="role.rejectionCause != '' && role.rejectionCause != null && role.serviceTerminalStatus == 'BR'">
+                           <label for="RejectionCause"><span  i18n="RejectionCause"></span></label> : <span class="red">{{role.rejectionCause}}</span>
+                       </div>
+                     
+                      <div class="form-group"  data-ng-show="role.rejectionCause != '' && role.rejectionCause != null && role.serviceTerminalStatus == 'ME'">
+                           <label for="RejectionCause"><span  i18n="RejectionCause"></span></label> : <span class="text-primary">{{role.rejectionCause}}</span>
+                     </div>
+				    	
+                        <div class="form-group">
+                           <label for="roleID"><span class="red"> * </span><span i18n="RoleID"></span></label>
+                           <input autocomplete="off" data-ng-model="role.roleID" type="text" maxlength="100" class="form-control" placeholder="{{ 'RoleID' | i18n }}" id="roleID">
+                       </div>
+                       
+                       <div class="form-group">
+                           <label for="roleDescription"><span class="red"> * </span><span i18n="RoleDescription"></span></label>
+                           <input autocomplete="off" data-ng-model="role.roleDescription" type="text" maxlength="100" class="form-control" placeholder="{{ 'RoleDescription' | i18n }}" id="roleDescription">
+                       </div>
+                   </div><!-- /.box-body -->
+                   
+                   <div class="box-footer">
+                   		<div class="row">
+                   			<div class="col-sm-4">
+                   				<button type="submit" class="btn btn-success FormOptions" data-ng-click="saveOrUpdate(role, menuConvert)">
+                   					<i class="fa fa-check"></i>&nbsp; <span i18n="{{btn_save_up}}"></span>
+                   				</button>
+                   			</div>
+                   			<div class="col-sm-3" ng-show="isShow.resetButton">
+							    <button class="btn btn FormOptions" data-ng-click="reset()"> 
+									<i class="fa fa-refresh"></i>&nbsp;  <span i18n="btn_Common_Reset"></span>
+							 	</button>
+                   			</div>
+                   			<span ng-show="isCancle.cancleButton">
+	                   			<div class="col-sm-3">
+								    <button class="btn btn-danger FormOptions" data-ng-click="closeTerminal(role, cancelReasonTF)">
+								    	<i class="fa fa-times"></i> &nbsp; <span i18n="btn_Cancel"></span>
+								    </button>
+	                   			</div>
+                   			</span>
+                   			<div class="col-sm-3">
+                   				<button class="btn FormOptions" data-ng-click="goBack()">
+                   					<i class="fa fa-external-link"></i> &nbsp; <span i18n="btn_Back"></span>
+                   				</button>
+                   			</div>
+                   		</div>
+                   </div>
+                   
+               </form>
+           </div>
+		</div>
+		<div class="col-md-6">
+			<div class="box box-primary">
+               <!-- form start -->
+               <form role="form">
+                   <div class="box-body">
+                   	<div class="form-group">
+                           <label for="roleMenu"><span class="red"> * </span><span i18n="RoleMenu"></span></label>
+                         </div>
+                         <div>
+                         </div>
+                       <div data-ng-repeat="topMenu in menuConvert">
+						 <ul> 
+                           <li> 
+                             <div>
+                              	<label><input type ="checkbox" data-ng-model ="topMenu['value']"></input><span i18n={{topMenu.topmenuid}}></span></label><br>
+                             </div>
+                           </li> 
+                           <li>
+                          	 <ul> 
+                               <li data-ng-repeat="leftMenu in topMenu.leftmenuids"> 
+                                  <label><input type ="checkbox" data-ng-model ="leftMenu['value']"></input><span i18n={{leftMenu.leftmenuID}}></span></label><br>
+                                </li> 
+                             </ul>
+                           </li>
+                            
+                       </ul>
+                       </div>  
+					</div>
+                       </div>
+                   </div><!-- /.box-body -->
+                   
+                   
+               </form>
+           </div>
+		</div>
+		
+		
+	</div>
+                            
+</section>

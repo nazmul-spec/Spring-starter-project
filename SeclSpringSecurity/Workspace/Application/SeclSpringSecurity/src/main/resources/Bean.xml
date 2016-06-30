@@ -1,0 +1,541 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+
+	<!-- Manager Classes -->
+	<bean id="springJdbcDao" class="net.myapp.springsecurity.dal.dao.impl.SpringJdbcDaoImpl">
+   		<property name="dataSource" 							ref="dataSource"/>
+  		<property name="transactionManager"  					ref="transactionManager" /> 
+   	</bean>
+   <!-- 	<bean id="memoryDao" class="net.myapp.springsecurity.dal.dao.impl.CouchBaseDaoImpl" init-method="init" destroy-method="destroy">
+		<property name="couchUrl" 						value="${couch.url}" />
+		<property name="couchBucket" 					value="${couch.bucket}" />
+		<property name="couchPassword" 					value="${couch.password}" />
+		<property name="couchViewMode" 					value="${couch.viewmode}" />
+	</bean> -->
+	
+   	<!-- Utils -->
+	<bean id="dateManager" class="net.myapp.springsecurity.dal.db.utils.DateUtil" />
+	<bean id="queryManager" class="net.myapp.springsecurity.dal.manager.impl.PostgreQueryManagerImpl" />
+   	
+	<!-- Manager Classes -->
+	<bean id="baseManager" class="net.myapp.springsecurity.dal.manager.impl.BaseManagerImpl">
+		<property name="springJdbcDao" 							ref="springJdbcDao"/>
+		<property name="dateManager" 							ref="dateManager"/>
+		<property name="queryManager" 							ref="queryManager"/>
+		<!-- <property name="memoryDao" 								ref="memoryDao"/> -->
+	</bean>
+	
+	<!-- Utils -->
+	<bean id="auditLogManager" class="net.myapp.springsecurity.dal.db.utils.AuditLogUtil" parent="baseManager" />
+	
+	<!-- Spring Param Object List Start -->
+	<!-- <bean id="objectAccountClosing" class="net.myapp.springsecurity.dal.object.param.ObjectAccountClosing">
+		<property name="dateManager" ref="dateManager" />
+	</bean>
+	<bean id="objectFingerPrint" class="net.myapp.springsecurity.dal.object.param.ObjectFingerPrint">
+		<property name="dateManager" ref="dateManager" />
+	</bean>
+	<bean id="objectServicePoint" class="net.myapp.springsecurity.dal.object.param.ObjectServicePoint">
+		<property name="dateManager" ref="dateManager" />
+	</bean>
+	<bean id="objectCompanyZone" class="net.myapp.springsecurity.dal.object.param.ObjectCompanyZone">
+		<property name="dateManager" ref="dateManager" />
+	</bean>
+	<bean id="objectAccount" class="net.myapp.springsecurity.dal.object.param.ObjectAccount">
+		<property name="dateManager" ref="dateManager" />
+	</bean>
+	<bean id="objectRemittance" class="net.myapp.springsecurity.dal.object.param.ObjectRemittance">
+		<property name="dateManager" ref="dateManager" />
+	</bean>
+	
+	<bean id="billTypeObject" class="net.myapp.springsecurity.dal.object.param.BillTypeObject">
+	</bean> -->
+	
+	
+	<!-- Spring Param Object List End --><!-- 
+	
+	<bean id="csbPlatformServiceUtils" class="net.myapp.springsecurity.dal.db.utils.CSBPlatformServiceUtils" /> -->
+	
+	<!-- spring security -->
+	<bean id="userDao" class="net.myapp.springsecurity.dal.springsecurity.security.SecurityUserDao" parent="baseManager" />
+	
+	<!-- ManagerImpl start -->
+	<bean id="loginManager" class="net.myapp.springsecurity.dal.manager.impl.LoginManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 			ref="auditLogManager"></property>
+	</bean>
+	<!-- <bean id="accountManager" class="net.myapp.springsecurity.dal.manager.impl.AccountManagerImpl" parent="baseManager" >
+		<property name="objectAccount" 				ref="objectAccount" />
+		<property name="csbPlatformServiceUtils" 	ref="csbPlatformServiceUtils" />
+		<property name="passwordEncryptor" 			ref="passwordEncryptor" />
+		<property name="serverBaseURL" 				value="${server.csbServerBaseURL}"/>
+		<property name="auditLogManager" 			ref="auditLogManager"></property>
+	</bean>
+	<bean id="accountListManager" class="net.myapp.springsecurity.dal.manager.impl.AccountListManagerImpl" parent="baseManager" />
+ -->
+	<!-- <bean id="customerManager" class="net.myapp.springsecurity.dal.manager.impl.CustomerManagerImpl" parent="baseManager" >
+	    <property name="PhotoPath" 						value="${PhotoPath}" />
+	    <property name="photoServerPath" 				value="${localPhotoServer}" />
+		<property name="passwordEncryptor" 				ref="passwordEncryptor" />
+		<property name="auditLogManager" 				ref="auditLogManager"></property>
+	</bean>
+	<bean id="comboManager" class="net.myapp.springsecurity.dal.manager.impl.ComboManagerImpl" parent="baseManager" />
+	<bean id="agentManager" class="net.myapp.springsecurity.dal.manager.impl.AgentManagerImpl" parent="baseManager">
+	     <property name="PhotoPath"						 			value="${PhotoPath}" />
+	     <property name="photoServerPath" 							value="${localPhotoServer}" />
+		<property name="auditLogManager" 							ref="auditLogManager"></property>
+    </bean>
+    <bean id="newAccountManager" class="net.myapp.springsecurity.dal.manager.impl.NewAccountManagerImpl" parent="baseManager" />
+	<bean id="newBankManager" class="net.myapp.springsecurity.dal.manager.impl.NewBankManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 			ref="auditLogManager"></property>
+	</bean>
+	<bean id="newBranchManager" class="net.myapp.springsecurity.dal.manager.impl.NewBranchManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 			ref="auditLogManager"></property>
+	</bean>
+	<bean id="bankManager" class="net.myapp.springsecurity.dal.manager.impl.BankManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 							ref="auditLogManager"></property>
+	</bean>
+	<bean id="branchManager" class="net.myapp.springsecurity.dal.manager.impl.BranchManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 							ref="auditLogManager"></property>
+	</bean>
+	<bean id="duplicateValidationManager" class="net.myapp.springsecurity.dal.manager.impl.DuplicateValidationManagerImpl" parent="baseManager" />
+	<bean id="serviceMetapropertyManager" class="net.myapp.springsecurity.dal.manager.impl.ServiceMetapropertyManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 							ref="auditLogManager"></property>
+	</bean>
+	<bean id="ddlMetadataManagerImpl" class="net.myapp.springsecurity.dal.manager.impl.DdlMetadataManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 							ref="auditLogManager"></property>
+	</bean> -->
+	<bean id="securityUserManager" class="net.myapp.springsecurity.dal.manager.impl.SecurityUserManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 							ref="auditLogManager"></property>
+	</bean>	
+	<bean id="passwordEncryptor" class="net.myapp.springsecurity.dal.sha1encryptor.PasswordEncryptor" />
+	
+	<!-- <bean id="accountCloseManager" class="net.myapp.springsecurity.dal.manager.impl.AccountCloseManagerImpl" parent="baseManager">
+		<property name="objectAccountClosing" ref="objectAccountClosing" />
+	</bean>
+	<bean id="productManagerImpl" class="net.myapp.springsecurity.dal.manager.impl.ProductManagerImpl" parent="baseManager" />
+	<bean id="responseBean" class="net.myapp.springsecurity.dal.bean.ResponseBean"></bean>
+	<bean id="statementManager" class="net.myapp.springsecurity.dal.manager.impl.StatementManagerImpl" parent="baseManager">
+		<property name="csbPlatformServiceUtils" ref="csbPlatformServiceUtils" />
+		<property name="passwordEncryptor" ref="passwordEncryptor" />
+		<property name="serverBaseURL" value="${server.csbServerBaseURL}" />
+	</bean>
+	<bean id="fingerOrderManager" class="net.myapp.springsecurity.dal.manager.impl.FingerOrderManagerImpl" parent="baseManager">
+		<property name="objectFingerPrint" ref="objectFingerPrint" />
+		<property name="auditLogManager" 			ref="auditLogManager"></property>
+	</bean>
+	<bean id="qrCardManager" class="net.myapp.springsecurity.dal.manager.impl.QRCardManagerImpl" parent="baseManager">
+		<property name="qrImagePath" 			value="${qrcard.qrImagePath}" />
+		<property name="qrImagePathTemp" 		value="${qrcard.qrImagePathTemp}" />
+		<property name="cardBackgroundPhoto" 	value="${qrcard.cardBackgroundPhoto}" />
+		<property name="cardBackImage" 			value="${qrcard.cardBackImage}" />
+		<property name="cardFontPath" 			value="${qrcard.cardFontPath}" />
+		<property name="cardFontPath2" 			value="${qrcard.cardFontPath2}" />
+		<property name="cardTargetFolder" 		value="${qrcard.cardTargetFolder}" />
+		<property name="auditLogManager" 			ref="auditLogManager"></property>
+	</bean>
+	<bean id="dashboardManager" class="net.myapp.springsecurity.dal.manager.impl.DashboardManagerImpl" parent="baseManager" />
+	
+	<bean id="requestTraceManager" class="net.myapp.springsecurity.dal.manager.impl.RequestTraceManagerImpl" parent="baseManager" />
+	<bean id="requestTraceDetailsManager" class="net.myapp.springsecurity.dal.manager.impl.RequestTraceDetailsManagerImpl" parent="baseManager" />
+	<bean id="agentStaffManager" class="net.myapp.springsecurity.dal.manager.impl.AgentStaffManagerImpl" parent="baseManager">
+		 <property name="PhotoPath"						 			value="${PhotoPath}" />
+	      <property name="photoServerPath" 							 value="${localPhotoServer}" />
+		<property name="auditLogManager" 			ref="auditLogManager"></property>
+	  </bean>
+	  
+	  <bean id="salesTeamManager" class="net.myapp.springsecurity.dal.manager.impl.SalesTeamManagerImpl" parent="baseManager">
+		 <property name="PhotoPath"						 			value="${PhotoPath}" />
+	      <property name="photoServerPath" 							 value="${localPhotoServer}" />
+		<property name="auditLogManager" 			ref="auditLogManager"></property>
+	  </bean>
+	  
+	<bean id="terminalManager" class="net.myapp.springsecurity.dal.manager.impl.TerminalManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 							ref="auditLogManager"></property>
+	</bean>
+	<bean id="outletAreaManager" class="net.myapp.springsecurity.dal.manager.impl.OutletAreaManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 							ref="auditLogManager"></property>
+	</bean>
+	<bean id="outletZoneManager" class="net.myapp.springsecurity.dal.manager.impl.OutletZoneManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 							ref="auditLogManager"></property>
+	</bean>
+	<bean id="roleManager" class="net.myapp.springsecurity.dal.manager.impl.RoleManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 							ref="auditLogManager"></property>
+	</bean>
+	<bean id="passwordEncryptor" class="net.myapp.springsecurity.dal.sha1encryptor.PasswordEncryptor" />
+	
+	<bean id="gridReportManager" class="net.myapp.springsecurity.dal.manager.impl.GridReportManagerImpl" parent="baseManager">
+		<property name="csbPlatformServiceUtils" ref="csbPlatformServiceUtils" />
+		<property name="passwordEncryptor" ref="passwordEncryptor" />
+		<property name="serverBaseURL" value="${server.csbServerBaseURL}" />
+	</bean>
+	
+	<bean id="chequeCollectionGridReportManagerImpl" class="net.myapp.springsecurity.dal.manager.impl.report.ChequeCollectionGridReportManagerImpl" parent="baseManager">
+		<property name="csbPlatformServiceUtils" ref="csbPlatformServiceUtils" />
+		<property name="passwordEncryptor" ref="passwordEncryptor" />
+		<property name="serverBaseURL" value="${server.csbServerBaseURL}" />
+	</bean>
+	<bean id="chequeCollectionPDFReportManagerImp" class="net.myapp.springsecurity.dal.manager.impl.report.ChequeCollectionPDFReportManagerImpl" parent="baseManager" />
+	
+	<bean id="pdfReportManager" class="net.myapp.springsecurity.dal.manager.impl.PDFReportManagerImpl" parent="baseManager" />
+	<bean id="xlsReportManager" class="net.myapp.springsecurity.dal.manager.impl.XLSReportManagerImpl" parent="baseManager" />
+	<bean id="cequeCollectionXLSReportManagerImpl" class="net.myapp.springsecurity.dal.manager.impl.report.ChequeCollectionXLSReportManagerImpl" parent="baseManager" />
+	<bean id="servicePointManager" class="net.myapp.springsecurity.dal.manager.impl.ServicePointImpl" parent="baseManager">
+	    <property name="objectServicePoint" ref="objectServicePoint" />
+		<property name="auditLogManager" 							ref="auditLogManager"></property>
+	</bean>
+	<bean id="companyZoneManager" class="net.myapp.springsecurity.dal.manager.impl.CompanyZoneManagerImpl" parent="baseManager">
+		<property name="objectCompanyZone" 							ref="objectCompanyZone" />
+		<property name="auditLogManager" 							ref="auditLogManager" />
+	</bean> -->
+	<bean id="logManager" class="net.myapp.springsecurity.dal.manager.impl.LogManagerImpl" parent="baseManager"/>
+	<!-- <bean id="transactionsManagerImpl" class="net.myapp.springsecurity.dal.manager.impl.TransactionsManagerImpl" parent="baseManager">
+	    <property name="csbPlatformServiceUtils" ref="csbPlatformServiceUtils" />
+		<property name="serverBaseURL" value="${server.csbServerBaseURL}" />	
+	</bean> -->	
+	<!-- <bean id="billManager" class="net.myapp.springsecurity.dal.manager.impl.BillManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 							ref="auditLogManager"></property>
+	</bean>
+	
+	<bean id="utilityCompanyManager" class="net.myapp.springsecurity.dal.manager.impl.UtilityCompanyManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 							ref="auditLogManager"></property>
+	</bean>
+	
+	<bean id="tagDictionaryManager" class="net.myapp.springsecurity.dal.manager.impl.TagDictionaryManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 							ref="auditLogManager"></property>
+	</bean>	
+	<bean id="chargeModelManager" class="net.myapp.springsecurity.dal.manager.impl.ChargeModelManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 							ref="auditLogManager"></property>
+	</bean>	
+	<bean id="chargeModelDefManager" class="net.myapp.springsecurity.dal.manager.impl.ChargeModelDefManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 							ref="auditLogManager"></property>
+	</bean>	
+	<bean id="glMasterDataManager" class="net.myapp.springsecurity.dal.manager.impl.GLMasterDataManagerImpl" parent="baseManager">
+		
+	</bean>	
+	
+	<bean id="chequeCollectionManagerImpl" class="net.myapp.springsecurity.dal.manager.impl.ChequeCollectionManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 								ref="auditLogManager"></property>
+		<property name="PhotoPath" 						value="${PhotoPath}" />
+	    <property name="photoServerPath" 				value="${localPhotoServer}" />
+	</bean>
+	
+	<bean id="auditManager" class="net.myapp.springsecurity.dal.manager.impl.AuditLogManagerImpl" parent="baseManager" />
+	
+	<bean id="remittanceManager" class="net.myapp.springsecurity.dal.manager.impl.RemittanceImpl" parent="baseManager">
+		<property name="objectRemittance"      		ref="objectRemittance" />	
+		<property name="PhotoPath" 					value="${PhotoPath}" />
+	    <property name="photoServerPath" 			value="${localPhotoServer}" />
+		<property name="csbPlatformServiceUtils" 	ref="csbPlatformServiceUtils" />
+		<property name="passwordEncryptor" 			ref="passwordEncryptor" />
+		<property name="serverBaseURL" 				value="${server.csbServerBaseURL}"/>
+	</bean>	
+	
+	<bean id="billTypeManagerImpl" class="net.myapp.springsecurity.dal.manager.impl.BillTypeManagerImpl" parent="baseManager">
+		<property name="billTypeObject"               			 ref="billTypeObject" />		
+		<property name="auditLogManager" 							ref="auditLogManager" />
+	</bean>	
+	
+	<bean id="transProfileManager" class="net.myapp.springsecurity.dal.manager.impl.TransProfileManagerImpl" parent="baseManager">
+	    <property name="auditLogManager" 							ref="auditLogManager"></property>
+	</bean>
+	
+	<bean id="outletTransProfileManager" class="net.myapp.springsecurity.dal.manager.impl.OutletTransProfileManagerImpl" parent="baseManager">
+	    <property name="auditLogManager" 							ref="auditLogManager"></property>
+	</bean> -->
+	
+	<bean id="passwordPolicyManager" class="net.myapp.springsecurity.dal.manager.impl.PasswordPolicyManagerImpl" parent="baseManager">
+	    <property name="auditLogManager" 							ref="auditLogManager"></property>
+	</bean>
+	<!-- 
+	<bean id="calendarManager" class="net.myapp.springsecurity.dal.manager.impl.CalendarManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 							ref="auditLogManager"></property>
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<bean id="misManager" class="net.myapp.springsecurity.dal.manager.impl.mis.MisManagerImpl" parent="baseManager">
+		<property name="auditLogManager" 							ref="auditLogManager"></property>
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<bean id="serviceDeliveryManager" class="net.myapp.springsecurity.dal.manager.impl.ServiceDeliveryManagerImpl" parent="baseManager">
+	    <property name="auditLogManager" 							ref="auditLogManager"></property>
+	    <property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<bean id="fileUploadManager" class="net.myapp.springsecurity.dal.manager.impl.FileUploadManagerImpl" parent="baseManager">
+	</bean> -->
+	<!-- ManagerImpl end -->
+	
+	<!-- Beans -->
+	<bean id="loginInfo" class="net.myapp.springsecurity.dal.domain.LoginInfo" /><!-- 
+	<bean id="bank" class="net.myapp.springsecurity.dal.domain.Bank" />
+	<bean id="account" class="net.myapp.springsecurity.dal.domain.Account" />
+	<bean id="customer" class="net.myapp.springsecurity.dal.domain.Customer" />
+	<bean id="agentsBean" class="net.myapp.springsecurity.dal.bean.AgentBean" />
+	<bean id="branch" class="net.myapp.springsecurity.dal.domain.Branch" />
+	<bean id="transBean" class="net.myapp.springsecurity.dal.bean.TransBean" /> -->
+	
+	<!-- Rest Service Classes start -->
+	<bean id="loginService" class="net.myapp.springsecurity.rest.service.LoginService">
+		<property name="loginManager" ref="loginManager" />
+	</bean>   
+	<!-- 
+	<bean id="bankService" class="net.myapp.springsecurity.rest.service.BankService">
+		<property name="bankManager"							 ref="bankManager" />
+	</bean>
+	
+	<bean id="accountService" class="net.myapp.springsecurity.rest.service.AccountService">
+		<property name="accountManager" 								ref="accountManager" />
+	</bean>
+	
+	<bean id="accountListService" class="net.myapp.springsecurity.rest.service.AccountListService">
+	<property name="accountListManager" 						ref="accountListManager" />
+	</bean>
+	
+	<bean id="customerService" class="net.myapp.springsecurity.rest.service.CustomerService">
+		<property name="customerManager" 					ref="customerManager" />
+	</bean>
+
+	<bean id="fingerOrderService" class="net.myapp.springsecurity.rest.service.FingerOrderService">
+		<property name="fingerOrderManager" 						ref="fingerOrderManager" />
+	</bean>
+	
+	<bean id="fingerConfigureService" class="net.myapp.springsecurity.rest.service.FingerConfigureService">
+		<property name="serviceMetapropertyManager" 						ref="serviceMetapropertyManager" />
+	</bean>
+	
+	<bean id="branchService" class="net.myapp.springsecurity.rest.service.BranchService">
+		<property name="branchManager" 							ref="branchManager" />
+	</bean>
+	
+	<bean id="serviceMetapropertyService" class="net.myapp.springsecurity.rest.service.ServiceMetapropertyService">
+		<property name="serviceMetapropertyManager" ref="serviceMetapropertyManager" />
+	</bean>
+	
+	<bean id="ddlMetadataService" class="net.myapp.springsecurity.rest.service.DdlMetadataService">
+		<property name="ddlMetadataManager" 						ref="ddlMetadataManagerImpl" />
+	</bean>
+	
+	<bean id="securityUserService" class="net.myapp.springsecurity.rest.service.SecurityUserService">
+		<property name="securityUserManager" 							ref="securityUserManager" />
+	</bean>
+	
+	<bean id="comboService" class="net.myapp.springsecurity.rest.service.ComboService">
+		<property name="comboManager" ref="comboManager" />
+	</bean>
+	
+	<bean id="agentService" class="net.myapp.springsecurity.rest.service.AgentService">
+		<property name="agentManager"									 ref="agentManager" />
+	</bean>
+	
+	<bean id="newAccountService" class="net.myapp.springsecurity.rest.service.NewAccountService">
+		<property name="newAccountManager" ref="newAccountManager" />
+	</bean> 
+	
+	<bean id="newBankService" class="net.myapp.springsecurity.rest.service.NewBankService">
+		<property name="newBankManager" 							ref="newBankManager" />
+	</bean>
+	
+	<bean id="newBranchService" class="net.myapp.springsecurity.rest.service.NewBranchService">
+		<property name="newBranchManager" ref="newBranchManager" />
+	</bean>
+	
+	<bean id="agentStatementService" class="net.myapp.springsecurity.rest.service.AgentStatementService">
+		<property name="statementManager" ref="statementManager" /> 
+	</bean>
+	
+	<bean id="accountStatementService" class="net.myapp.springsecurity.rest.service.AccountStatementService">
+		 <property name="statementManager" ref="statementManager" /> 
+	</bean>
+	
+	<bean id="duplicateValidationService" class="net.myapp.springsecurity.rest.service.DuplicateValidationService">
+		<property name="duplicateValidationManager" ref="duplicateValidationManager" />
+		<property name="queryManager" ref="queryManager" />
+	</bean>
+	
+	<bean id="accountCloseService" class="net.myapp.springsecurity.rest.service.AccountCloseService">
+		<property name="accountCloseManager" ref="accountCloseManager" />
+	</bean>
+   	<bean id="dashboardService" class="net.myapp.springsecurity.rest.service.DashboardService">
+		<property name="dashboardManager" 			ref="dashboardManager"/>
+	</bean>
+	
+   	<bean id="webSocketService" class="net.myapp.springsecurity.rest.service.WebSocketService">
+	</bean>
+	
+	<bean id="qrcardService" class="net.myapp.springsecurity.rest.service.QRCardService">
+		<property name="qrCardManager" ref="qrCardManager" />		
+	</bean>
+	
+	<bean id="qrDownloaderService" class="net.myapp.springsecurity.rest.service.QrDownloaderService">
+		<property name="qrCardManager" ref="qrCardManager" />		
+	</bean>
+	
+	<bean id="requestTraceService" class="net.myapp.springsecurity.rest.service.RequestTraceService">
+		<property name="requestTraceManager" ref="requestTraceManager" />		
+	</bean>
+	
+	<bean id="requestTraceDetailsService" class="net.myapp.springsecurity.rest.service.RequestTraceDetailsService">
+		<property name="requestTraceDetailsManager" ref="requestTraceDetailsManager" />		
+	</bean>
+	
+	<bean id="agentStaffService" class="net.myapp.springsecurity.rest.service.AgentStaffService">
+		<property name="agentStaffManager" ref="agentStaffManager" />		
+	</bean>
+	
+	<bean id="salesTeamService" class="net.myapp.springsecurity.rest.service.SalesTeamService">
+		<property name="salesTeamManager" ref="salesTeamManager" />		
+	</bean>
+	
+	<bean id="terminalService" class="net.myapp.springsecurity.rest.service.TerminalService">
+		<property name="terminalManager" ref="terminalManager" />		
+	</bean>
+	
+	<bean id="outletAreaService" class="net.myapp.springsecurity.rest.service.OutletAreaService">
+		<property name="outletAreaManager" ref="outletAreaManager" />		
+	</bean>
+	
+	<bean id="outletZoneService" class="net.myapp.springsecurity.rest.service.OutletZoneService">
+		<property name="outletZoneManager" ref="outletZoneManager" />		
+	</bean>
+	
+	<bean id="roleService" class="net.myapp.springsecurity.rest.service.RoleService">
+		<property name="roleManager" ref="roleManager" />		
+	</bean>
+	
+	<bean id="gridReportGeneratorService" class="net.myapp.springsecurity.rest.service.report.GridReportGeneratorService">
+		 <property name="gridReportManager" ref="gridReportManager" /> 
+	</bean>	
+
+	<bean id="productService" class="net.myapp.springsecurity.rest.service.ProductService">
+		<property name="productManager" 	            					ref="productManagerImpl" />
+		<property name ="responseBean" 										ref="responseBean"/>
+	</bean>
+	
+	<bean id="transProfileService" class="net.myapp.springsecurity.rest.service.TransactionProfileService">
+		<property name="transProfileManager" 							ref="transProfileManager" />
+	</bean>
+	
+	<bean id="outletTransactionProfileService" class="net.myapp.springsecurity.rest.service.OutletTransactionProfileService">
+		<property name="outletTransProfileManager" 							ref="outletTransProfileManager" />
+	</bean>
+	
+	<bean id="passwordPolicyService" class="net.myapp.springsecurity.rest.service.PasswordPolicyService">
+		<property name="passwordPolicyManager" 							ref="passwordPolicyManager" />
+	</bean>
+	
+	<bean id="calendarService" class="net.myapp.springsecurity.rest.service.CalendarService">
+		<property name="calendarManager" 							ref="calendarManager" />
+	</bean>
+	
+	<bean id="misService" class="net.myapp.springsecurity.rest.service.MisService">
+		<property name="misManager" 							ref="misManager" />
+	</bean>
+	
+	<bean id="serviceDeliveryService" class="net.myapp.springsecurity.rest.service.ServiceDeliveryService">
+		<property name="serviceDeliveryManager" 							ref="serviceDeliveryManager" />
+	</bean>
+	
+	<bean id="servicePointService" class="net.myapp.springsecurity.rest.service.ServicePointService">
+		<property name="servicePointManager" 							ref="servicePointManager" />
+	</bean>
+	
+	<bean id="companyZoneService" class="net.myapp.springsecurity.rest.service.CompanyZoneService">
+		<property name="companyZoneManager" 							ref="companyZoneManager" />
+	</bean>
+	
+	<bean id="billCollectionService" class="net.myapp.springsecurity.rest.service.BillCollectionService">
+		<property name="billManager" ref="billManager"/>
+	</bean>
+	
+	<bean id="chequeCollectionService" class="net.myapp.springsecurity.rest.service.ChequeCollectionService">
+		<property name="chequeCollectionManager" ref="chequeCollectionManagerImpl"/>
+	</bean>
+	
+	<bean id="filesService" class="net.myapp.springsecurity.rest.service.FilesService">
+		<property name="photoServerPath" 							value="${localPhotoServer}" />
+	</bean>
+	
+	<bean id="logService" class="net.myapp.springsecurity.rest.service.LogService">
+		<property name="logManager" 								ref="logManager" />
+	</bean>
+	
+	<bean id="transactionService" class="net.myapp.springsecurity.rest.service.TransactionService">
+		<property name="transManager" 								ref="transactionsManagerImpl" />
+	</bean>
+	
+	<bean id="auditLogService" class="net.myapp.springsecurity.rest.service.AuditLogService">
+		<property name="auditManager" 							ref="auditManager" />
+	</bean>
+	
+	<bean id="remittanceService" class="net.myapp.springsecurity.rest.service.RemittanceService">
+		 <property name="remittanceManager" ref="remittanceManager" /> 
+	</bean>
+	<bean id="billTypeService" class="net.myapp.springsecurity.rest.service.BillTypeService">
+		 <property name="billTypeManager" 					ref="billTypeManagerImpl" /> 
+	</bean>
+	
+	<bean id="utilityCompanyService" class="net.myapp.springsecurity.rest.service.UtilityCompanyService">
+		<property name="utilityCompanyManager" 				ref="utilityCompanyManager"/>
+	</bean>
+	
+	<bean id="tagDictionaryService" class="net.myapp.springsecurity.rest.service.TagDictionaryService">
+		<property name="tagDictionaryManager" 						ref="tagDictionaryManager"/>
+	</bean>
+	
+	<bean id="chargeModelService" class="net.myapp.springsecurity.rest.service.ChargeModelService">
+		<property name="chargeModelManager" 						ref="chargeModelManager"/>
+	</bean>
+	
+	<bean id="chargeModelDefService" class="net.myapp.springsecurity.rest.service.ChargeModelDefService">
+		<property name="chargeModelDefManager" 						ref="chargeModelDefManager"/>
+	</bean>
+	<bean id="glMasterDataService" class="net.myapp.springsecurity.rest.service.GLMasterDataService">
+		<property name="glMasterDataManager" 						ref="glMasterDataManager"/>
+	</bean>
+	<bean id="fileUploadService" class="net.myapp.springsecurity.rest.service.FileUploadService">
+		<property name="xlsPath" 							value="${xlsPath}" />		
+		<property name="fileUploadManager" 							ref="fileUploadManager" />		
+	</bean>
+	Rest Service Classes end
+	
+	Report Classes
+	<bean id="accountStatementReport" class="net.myapp.springsecurity.dal.reports.AccountStatementReport" parent="baseManager">
+		<property name="serverBaseURL" value="${server.csbServerBaseURL}" />
+		<property name="csbPlatformServiceUtils" ref="csbPlatformServiceUtils" />
+		<property name="statementManager" ref="statementManager" />
+	</bean>
+	
+	<bean id="agentStatementReport" class="net.myapp.springsecurity.dal.reports.AgentStatementReport" parent="baseManager">
+		<property name="serverBaseURL" value="${server.csbServerBaseURL}" />
+		<property name="csbPlatformServiceUtils" ref="csbPlatformServiceUtils" />
+		<property name="statementManager" ref="statementManager" />
+	</bean>
+	
+	<bean id="chequeCollectionGridReportService" class="net.myapp.springsecurity.rest.service.report.ChequeCollectionGridReportService">
+		 <property name="chequeCollectionGridReportManager" 	ref="chequeCollectionGridReportManagerImpl" /> 
+	</bean>	 -->
+	
+	<!-- Rest Service Classes -->
+	<!-- <bean id="pDFReportService" class="net.myapp.springsecurity.rest.service.report.PDFReportService">
+		<property name="agentStatementReport" ref="agentStatementReport" />
+		<property name="accountStatementReport" ref="accountStatementReport" />
+		<property name="pdfReportManager" ref="pdfReportManager" />
+	</bean>
+	
+	<bean id="chequeCollectionPDFReportService" class="net.myapp.springsecurity.rest.service.report.ChequeCollectionPDFReportService">
+		<property name="chequeCollectionPDFReportManager" 	ref="chequeCollectionPDFReportManagerImp" />
+	</bean> -->
+	
+	<!-- <bean id="chequeCollectionXLSReportService" class="net.myapp.springsecurity.rest.service.report.ChequeCollectionXlsReportService">
+		<property name="chequeCollectionXLSReportManager" 					ref="cequeCollectionXLSReportManagerImpl" />
+	</bean>
+	
+	<bean id="xLSReportService" class="net.myapp.springsecurity.rest.service.report.XlsReportService">
+		<property name="xlsReportManager" ref="xlsReportManager" />
+	</bean> -->
+   	
+</beans>

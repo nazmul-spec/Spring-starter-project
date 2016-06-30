@@ -1,0 +1,29 @@
+
+
+<!-- <div class="modal-header modal-header-confirm">
+	<h4 class="modal-title ng-binding">
+		{{modalOptions.headerText}}
+	</h4>
+</div>
+ -->
+<div class="modal-body">
+	<div><span>Agent ID : </span><span>{{modalOptions.data.agentID}}</span></div>
+	<div><span>Name : </span><span>{{modalOptions.data.agentName}}</span></div>
+	<div><span>Bank Acc No : </span><span>{{modalOptions.data.bankAccountNo}}</span></div>
+	<div><span>Email : </span><span>{{modalOptions.data.kyc.email}}</span></div>
+	<div><span>Address: </span><span>{{modalOptions.data.kyc.presentAddress}}</span></div>
+	<div class="form-group">
+	     <label for="inputRejectionReason"><span class="red"> * </span><span  i18n="inputRejectionReason1"></span></label>
+	     <textarea data-ng-model="modalOptions.data.rejectionCause" type="text" class="form-control" placeholder="{{ 'inputRejectionReason1' | i18n }}" id="inputRejectionReason"></textarea>
+	</div> 
+</div>
+
+<div class="modal-footer footer-noborder">	
+	<button class="btn btn-deafult" ng-click="modalOptions.close()"><i class="fa fa-times"></i>&nbsp; {{modalOptions.closeButtonText}}</button>
+	<button type="submit" class="btn btn-warning" ng-click="modalOptions.ok()"><i class="glyphicon glyphicon-ok"></i>&nbsp;{{modalOptions.actionButtonText}}</button>
+</div>
+<style>
+.footer-noborder{
+	border: none !important;
+}
+</style>

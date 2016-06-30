@@ -1,0 +1,125 @@
+
+
+	<div class="modal-body">
+	
+		<section>
+			<table style="min-width: 100%">
+				<tr>
+					<td>Agent ID </td>
+					<td>:</td>
+					<td>{{modalOptions.data.agentID}}</td>
+					<td>Branch ID </td>
+					<td>:</td>
+					<td>{{modalOptions.data.branchID}}</td>
+				</tr>
+				<tr>
+					<td>Agent Name </td>
+					<td>:</td>
+					<td>{{modalOptions.data.agentName}}</td>
+					<td>Branch Name </td>
+					<td>:</td>
+					<td>{{modalOptions.data.branchName}}</td>
+				</tr>
+				<tr>
+					<td>Login ID </td>
+					<td>:</td>
+					<td>{{modalOptions.data.loginID}}</td>
+					<td>Agent Outlet ID </td>
+					<td>:</td>
+					<td>{{modalOptions.data.servicePointID}}</td>
+				</tr>
+				<tr>
+					<td>Agent Type </td>
+					<td>:</td>
+					<td>{{modalOptions.data.agentType}}</td>
+					<td>Agent Outlet Name </td>
+					<td>:</td>
+					<td>{{modalOptions.data.servicePointName}}</td>
+				</tr>
+				<tr>
+					<td>Bank A/C No. </td>
+					<td>:</td>
+					<td>{{modalOptions.data.bankAccountNo}}</td>
+					<td>Total Terminal </td>
+					<td>:</td>
+					<td>{{modalOptions.data.totalTerminal}}</td>
+				</tr>				
+			</table>
+		</section>
+		<br/>
+		<section id="list-table">
+	                    	<div class="box-body table-responsive">
+					 			<table  class="table table-condensed">
+							        <thead>
+								        <tr>
+								            <th ng-repeat="column in modalOptions.columns" ng-show="column.visible"
+								                class="text-left sortable" ng-class="{
+								                    'sort-asc': tableParams.isSortBy(column.field, 'asc'),
+								                    'sort-desc': tableParams.isSortBy(column.field, 'desc')}"
+								                ng-click="modalOptions.terminals.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')">
+								                <div>{{column.title}}</div>
+								            </th>
+								        </tr>
+							        </thead>
+							        <tbody>
+							        <tr data-ng-repeat="terminal in modalOptions.terminals">
+						               	<td >{{terminal.serviceTerminalID}}</td>
+						                <td >{{terminal.serviceClientDeviceAddress}}</td>						                
+						                <td >{{terminal.biometricDeviceAddress}}</td>
+						                 <td >{{terminal.printerDeviceAddress}}</td>
+						                <td >{{terminal.cardDeviceAddress}}</td>
+						                <td >{{terminal.serviceTerminalStatus}}</td>
+							        </tr>
+							        </tbody>
+						        </table>
+				            </div>
+	                    </section>
+	
+		
+	</div>
+	
+	<div class="modal-footer footer-noborder">	
+		<button class="btn btn-deafult" ng-click="modalOptions.close()" i18n="btn_Cancel"><i class="fa fa-times"></i>&nbsp;</button>
+		<button type="submit" class="btn btn-success web-fl_right web-margin-left-common" ng-click="modalOptions.ok()" i18n="Print"><i class="glyphicon glyphicon-ok"></i>&nbsp;</button>
+	</div>
+
+<style>
+.footer-noborder{
+	border: none !important;
+}
+div.image
+  {  
+  background:url('images/common/nrbc-bank.png');
+  background-repeat:no-repeat;
+  background-position:center;  
+  background-color:#ffffff;
+  }
+  
+  
+div.transparentbox
+  {
+  width:400px;
+  height:180px;
+  margin:30px 50px;
+  background-color:#ffffff;
+  border:1px solid;
+  border-color:#CD853F;
+  opacity:0.6;
+  filter:alpha(opacity=60);
+  }
+div.transparentbox p
+  {
+  margin:30px 40px;
+  font-weight:bold;
+  color:#CD853F;
+  }
+ .watermark
+{
+    
+   background-size: 50%; /* CSS3 only, but not really necessary if you make a large enough image */
+   
+   background-repeat:no-repeat;
+ 
+}
+  
+</style>

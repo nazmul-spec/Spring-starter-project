@@ -1,0 +1,228 @@
+
+
+<div class="modal-header modal-header-confirm">
+	<h4 class="modal-title ng-binding">
+		{{modalOptions.headerText}}
+	</h4>
+</div>
+
+<div class="modal-body">
+  <h4> <label>{{modalOptions.bodyText}}</label> </h4> 
+ <div class="alert alert-info alert-dismissable txtColorModel">
+	 <div class="row">
+	 	<div class="col-md-6">
+        	<div class="row">
+		        <div class="col-md-3">
+		        	<label for="chargeName"><span class="red"> * </span><span  i18n="chargeName"></span></label>
+		        </div>
+		        <div class="col-md-9">
+		        	<input data-ng-model="modalOptions.data.chargeKey" type="text" class="form-control" placeholder="{{ 'chargeName' | i18n }}" id="chargeName"/ data-ng-disabled="true">
+		        </div>
+        	</div>
+       	</div>
+       	<div class="col-md-6">
+        	<div class="row">
+		        <div class="col-md-3">
+		        	<label for="description"><span  i18n="description"></span></label>
+		        </div>
+		        <div class="col-md-9">
+		        	<textarea data-ng-model="modalOptions.data.chargeKey" type="text" class="form-control" placeholder="{{ 'description' | i18n }}" id="description" data-ng-disabled="true"></textarea>
+		        </div>
+        	</div>
+       	</div>
+       
+    </div>
+ 
+     <div class="row">
+        <div class="col-md-2">
+        	<div class="form-group">
+	            <label for="chargeName"><span class="red"> * </span><span>From</span></label>
+	            <input data-ng-model="modalOptions.data.valueJSON.slotFrom" type="text" class="form-control" placeholder="{{ 'chargeName' | i18n }}" id="chargeName"/>
+	        </div>
+       	</div>
+       	<div class="col-md-2">
+       		<div class="form-group">
+	            <label for="chargeName"><span class="red"> * </span><span>To</span></label>
+	            <input data-ng-model="modalOptions.data.valueJSON.slotTo" type="text" class="form-control" placeholder="{{ 'chargeName' | i18n }}" id="chargeName"/>
+	        </div>
+       	</div>
+       	<div class="col-md-2">
+        	<div class="form-group">
+	            <label for="chargeName"><span class="red"> * </span><span>Charge Amount</span></label>
+	            <input data-ng-model="modalOptions.data.valueJSON.minChargeAmount" type="text" class="form-control" placeholder="{{ 'chargeName' | i18n }}" id="chargeName"/>
+	        </div>
+       	</div>
+       	<div class="col-md-2">
+       		<div class="form-group">
+	            <label for="chargeName"><span class="red"> * </span><span>Min Charge </span></label>
+	            <input data-ng-model="modalOptions.data.valueJSON.chargeAmount" type="text" class="form-control" placeholder="{{ 'chargeName' | i18n }}" id="chargeName"/>
+	        </div>
+       	</div>
+       	<div class="col-md-2">
+        	<div class="form-group">
+	            <label for="method"><span class="red"> * </span><span>Method</span></label>	           
+	             <select data-ng-model="modalOptions.data.valueJSON.method" ui-select2="" class="form-control select2-offscreen" placeholder="{{ 'chargeName' | i18n }}" id="method">
+				      <option value="Absolute">Absolute</option>
+				      <option value="Percentage">Percentage</option>
+				    </select>
+	            <!-- <input data-ng-model="modalOptions.data.valueJSON.method" type="text" class="form-control" placeholder="{{ 'chargeName' | i18n }}" id="chargeName"/> -->
+	        </div>
+       	</div>
+       	<div class="col-md-1">
+       		<div class="form-group">
+	          <label for="addButton"><span></span></label>
+	           <button class="btn btn-success FormOptions" ng-click="addCharge()">Add</button>
+	        </div>
+       	</div>
+    </div>
+    
+    
+<div class="row table-responsive" style="background: silver;">
+   <table class="table table-bordered">
+     <thead>
+     	 <th>Serial No.</th>
+         <th>From</th>
+         <th>To</th>
+         <th>Max</th>
+         <th>Min</th>
+         <th>Method</th>
+         <th colspan="2"  class="text-center">Action</th>
+         
+     </thead>
+     <tbody ui:sortable ng:model="modalOptions.data">
+     	<tr style="cursor: move;">
+     		<td>1</td>
+	        <td>0</td>
+	        <td>3000</td>
+	        <td>10</td>
+	        <td>10</td>
+	        <td>Percentage</td>	        
+	        <td class="text-center">	        	
+		        <a href="javascript:" data-ng-click="removeCustomer($index, modalOptions)">
+		          <span class="glyphicon glyphicon-remove"></span>
+		        </a>
+	        </td>
+	        <td class="text-center">
+	        	<a href="javascript:" data-ng-click="removeCustomer($index, modalOptions)">
+		          <span class="glyphicon glyphicon-edit"></span>
+		        </a>		       
+	        </td>
+       </tr>
+       <tr style="cursor: move;">
+     		<td>1</td>
+	        <td>0</td>
+	        <td>3000</td>
+	        <td>10</td>
+	        <td>10</td>
+	        <td>Percentage</td>	        
+	        <td class="text-center">	        	
+		        <a href="javascript:" data-ng-click="removeCustomer($index, modalOptions)">
+		          <span class="glyphicon glyphicon-remove"></span>
+		        </a>
+	        </td>
+	        <td class="text-center">
+	        	<a href="javascript:" data-ng-click="removeCustomer($index, modalOptions)">
+		          <span class="glyphicon glyphicon-edit"></span>
+		        </a>		       
+	        </td>
+       </tr>
+     </tbody>
+   </table>
+ 
+</div>
+    
+</div>  	 
+ 
+		 
+<div class="alert alert-success alert-dismissable txtColorDetails">
+	<h4> <label>Debit</label> </h4>  
+     <div class="row"> 
+ 		 	 	
+       	<div class="col-md-6">
+        	<div class="row">
+		        <div class="col-md-3">
+		        	<label for="DebitorAccountType"><span class="red"> * </span><span>Type</span></label>
+		        </div>
+		        <div class="col-md-9">
+		        <!-- <select data-ng-model="modalOptions.data.valueJSON.Debitor.accountType" ui-select2="" class="form-control select2-offscreen" placeholder="{{ 'chargeName' | i18n }}" id="method">
+				      <option value="Absolute">Absolute</option>
+				      <option value="Percentage">Percentage</option>
+				    </select> -->
+		        	<input data-ng-model="modalOptions.data.valueJSON.Debitor.accountType" type="text" class="form-control" placeholder="{{ 'DebitorAccountType' | i18n }}" id="DebitorAccountType"/>
+		        </div>
+        	</div>
+       	</div>
+       	<div class="col-md-6">
+        	<div class="row">
+		        <div class="col-md-3">
+		        	<label for="DebitorGlcode"><span class="red"> * </span><span>GL Code</span></label>
+		        </div>
+		        <div class="col-md-9">
+		        	<input data-ng-model="modalOptions.data.valueJSON.Debitor.glcode" type="text" class="form-control" placeholder="{{ 'DebitorGlcode' | i18n }}" id="DebitorGlcode"/>
+		        </div>
+        	</div>
+       	</div>
+    </div>
+ </div>
+ 
+ <div class="alert alert-success alert-dismissable txtColorDetails">
+	<h4> <label>Credit</label> </h4>  
+     <div class="row"> 
+ 		 	 	
+       	<div class="col-md-6">
+        	<div class="row">
+		        <div class="col-md-3">
+		        	<label for="CreditorAaccountType"><span class="red"> * </span><span>Type</span></label>
+		        </div>
+		        <div class="col-md-9">
+		        	<input data-ng-model="modalOptions.data.valueJSON.Creditor.accountType" type="text" class="form-control" placeholder="{{ 'CreditorAaccountType' | i18n }}" id="CreditorAaccountType"/>
+		        </div>
+        	</div>
+       	</div>
+       	<div class="col-md-6">
+        	<div class="row">
+		        <div class="col-md-3">
+		        	<label for="CreditorGlcode"><span class="red"> * </span><span>GL Code</span></label>
+		        </div>
+		        <div class="col-md-9">
+		        	<input data-ng-model="modalOptions.data.valueJSON.Creditor.glcode" type="text" class="form-control" placeholder="{{ 'CreditorGlcode' | i18n }}" id="CreditorGlcode"/>
+		        </div>
+        	</div>
+       	</div>
+    </div>
+ </div>
+ 
+ <div class="alert alert-success alert-dismissable txtColorDetails">
+	<h4> <label>Vat</label> </h4>  
+     <div class="row"> 		 	 	
+       	<div class="col-md-6">
+        	<div class="row">
+		        <div class="col-md-3">
+		        	<label for="VATAccountType"><span class="red"> * </span><span>Type</span></label>
+		        </div>
+		        <div class="col-md-9">
+		        	<input data-ng-model="modalOptions.data.valueJSON.VAT.accountType" type="text" class="form-control" placeholder="{{ 'VATAccountType' | i18n }}" id="VATAccountType"/>
+		        </div>
+        	</div>
+       	</div>
+       	<div class="col-md-6">
+        	<div class="row">
+		        <div class="col-md-3">
+		        	<label for="VATGlcode"><span class="red"> * </span><span>GL Code</span></label>
+		        </div>
+		        <div class="col-md-9">
+		        	<input data-ng-model="modalOptions.data.valueJSON.VAT.glcode" type="text" class="form-control" placeholder="{{ 'VATGlcode' | i18n }}" id="VATGlcode"/>
+		        </div>
+        	</div>
+       	</div>
+    </div>
+ </div>
+ 
+ <div class="modal-footer">	
+		
+		<span>
+			<button class="btn btn-deafult" ng-click="modalOptions.close()"><i class="fa fa-times"></i>&nbsp; <span  i18n="btn_Cancel"></span></button>
+			<button type="submit" class="btn btn-danger" 
+					ng-click="modalOptions.ok()"><i class="glyphicon glyphicon-ok"></i>&nbsp;<span >Push</span></button>
+		</span>
+</div>

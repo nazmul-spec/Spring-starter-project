@@ -1,0 +1,38 @@
+
+
+    #buttonDiv {
+        float: left;
+    }
+
+    .cmbDataTableLength {
+        width: 63px;
+    }
+
+    #myDataTable_paginate a {
+        padding: 3px;
+    }
+
+    #myDataTable_paginate a:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    table.display thead tr th.checkbox {
+        width: 18px;
+    }
+
+    a.jqTransformCheckbox {
+        background: url("../../../images/datagrid/checkbox.png") no-repeat scroll center top transparent;
+        display: block;
+        height: 14px;
+        vertical-align: middle;
+        width: 18px;
+    }
+
+    a.jqTransformChecked {
+        background-position: center bottom;
+    }
+
+    .jqTransformHidden {
+        display: none;
+    }

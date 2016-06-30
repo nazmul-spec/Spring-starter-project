@@ -1,0 +1,61 @@
+
+<!-- sidebar: style can be found in sidebar.less -->
+<section class="sidebar" data-ng-controller="appLeftMenuController" ng-class="{true:'isMobile', false:'isPc'}[true==isMobile]">
+	<!-- Sidebar user panel -->
+	<div class="user-panel">
+	
+		<!-- <div ng-show="isBlockShow.adminUser">
+		     <div class="pull-left image">
+	               <img style="width:210px; height:70px;"  src="{{bankLogoPath}}"  alt="Bank Logo"> class="img-circle"
+			</div>
+			<div class="pull-left info">
+				<p><span></span> {{logobankName.bankName}}</p>
+			</div> block div
+			
+		</div> -->
+		<div ng-show="isBlockShow.saUser">
+			<div>
+				<img src="images/common/celloscope-logo.png" style="width: 240px;" alt="Logo Name">
+			</div>
+		</div>
+	
+	</div>
+
+	<!-- sidebar menu: : style can be found in sidebar.less -->
+	<ul class="sidebar-menu">		  
+        <li data-ng-repeat="topmenu in appTopMenus" data-ng-class="{ treeview : topmenu.leftmenuids.length > 1}" id="{{topmenu.topmenuid}}">
+        	<a data-ng-click="clickTopMenu(topmenu)" class="link-pointer" data-ng-class="{ selectedTopNav: topmenu.topmenuid == currTopMenuId }">
+        		<i class=""></i>
+        		<span class="{{topmenu.cssClass}}"></span>        	
+        		<span data-i18n="{{topmenu.topmenuid}}"></span>        		
+        		<i class="fa fa-angle-left pull-right" data-ng-if="topmenu.leftmenuids.length > 1"></i>
+       		</a>
+        	 <ul class="treeview-menu" data-ng-if="topmenu.leftmenuids.length > 1">
+               <li data-ng-repeat="leftmenu in topmenu.leftmenuids" style="margin-left: 10px; cursor: pointer;" data-ng-click="clickLeftMenu(leftmenu)" id="{{leftmenu}}">     
+               		<a data-ng-class=" {selectedLeftNav: leftmenu == currLeftMenuId} ">           
+						<i class="fa fa-angle-double-right"></i>
+						<i class=""></i> 
+						<span data-i18n="{{leftmenu}}"></span>
+					</a>
+				</li>
+        	 </ul>
+        </li>        
+	</ul>
+</section>
+<!-- /.sidebar 
+
+-->
+ 
+
+<style type="text/css">
+	.isMobile{
+		margin-top : 0px;
+	}
+	.isPc{
+		margin-top : 0px;
+		margin-bottom : 65px;
+	}
+	.link-pointer{
+		cursor: pointer;
+	}
+</style>

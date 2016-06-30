@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+
+<html lang="en" ng-class="{'html-bg-color' : layout.leftPanel.isVisible}">
+
+	<head>
+	
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html">
+		<link rel="shortcut icon" href="Favicon.ico">			
+		<title>My app</title>
+		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+	    <!-- Lib JS -->	    
+	    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false"></script>
+	     -->
+	    <script type="text/javascript" src="Scripts/jquery/jquery.js"></script>	   
+	    <script type="text/javascript" src="Scripts/jquery/jquery-ui.js"></script>
+	    <script type="text/javascript" src="Scripts/other/select2.js"></script> 
+	    <script type="text/javascript" src="Scripts/jquery/jquery.numeric.js"></script>	   
+	    <script type="text/javascript" src="Scripts/jquery/jquery.dataTables.js"></script>	  
+	    <script type="text/javascript" src="Scripts/other/dataTables.bootstrap.js"></script>
+	    <script type="text/javascript" src="Scripts/jquery/jquery.fileupload.js"></script> 
+		<script type="text/javascript" src="Scripts/jquery/jquery.datetimepicker.js"></script>
+    	<script type="text/javascript" src="Scripts/jquery/jquery.expander.js"></script>
+    	<script type="text/javascript" src="Scripts/jquery/jquery.checktree_yctin.min.js"></script>
+    	<script type="text/javascript" src="Scripts/jquery/jquery.flot.min.js"></script>
+	    <script type="text/javascript" src="Scripts/jquery/jquery-clockpicker.js"></script>
+    	<!-- semantic -->
+	  	<script type="text/javascript" src="Scripts/semantic/semantic.js"></script>
+
+    	  
+    	  
+	    <script type="text/javascript" src="Scripts/other/underscore.js"></script>
+	    <script type="text/javascript" src="Scripts/other/jquery.bxslider.js"></script>
+	    
+	    
+	   <!--  <script type="text/javascript" src="Scripts/other/jquery-1.11.1.min.js"></script>
+	    <script type="text/javascript" src="Scripts/other/jquery.backstretch.min.js"></script>
+	    <script type="text/javascript" src="Scripts/other/scripts.js"></script> -->
+	    
+	    <script type="text/javascript" src="Scripts/bootstrap/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="Scripts/bootstrap/bootstrap-switch.js"></script>
+	    <!-- <script type="text/javascript" src="Scripts/bootstrap/bootstrap-clockpicker.js"></script> -->
+	    
+	    <script type="text/javascript" src="Scripts/angular/angular.js"></script>
+	    <script type="text/javascript" src="Scripts/angular/angular-ui.js"></script>
+	    <script type="text/javascript" src="Scripts/angular/angular-ui-bootstrap.js"></script>
+	    <script type="text/javascript" src="Scripts/angular/angular-animate.js"></script>
+	    <script type="text/javascript" src="Scripts/angular/angular-route.js"></script>
+	    <script type="text/javascript" src="Scripts/angular/TweenMax.min.js"></script>
+	    <script type="text/javascript" src="Scripts/angular/q.min.js"></script>
+	    <script type="text/javascript" src="Scripts/angular/angular-resource.min.js"></script>
+	    <script type="text/javascript" src="Scripts/angular/angular-cookies.js"></script>
+	    <script type="text/javascript" src="Scripts/angular/ng-table.js"></script>
+	    <script type="text/javascript" src="Scripts/angular/ng-grid-2.0.7.min.js"></script>
+	    <script type="text/javascript" src="Scripts/angular/localize.js"></script>
+	    <script type="text/javascript" src="Scripts/angular/angular-underscore-module.js"></script>
+	    <script type="text/javascript" src="Scripts/angular/ngProgress.js"></script>
+	    <script type="text/javascript" src="Scripts/angular/draganddrop.js"></script>
+	    
+	     <script type="text/javascript" src="Scripts/angular/lodash.min.js"></script>
+	     <script type="text/javascript" src="Scripts/angular/angular-highlightjs.js"></script>
+	     <script type="text/javascript" src="Scripts/angular/angularjs-dropdown-multiselect.js"></script>
+	    <script type="text/javascript" src="Scripts/angular/angular-loader.min.js"></script>
+	   
+	    <script type="text/javascript" src="Scripts/bootstrap/ui-bootstrap-0.11.0.js"></script>
+	    <script type="text/javascript" src="Scripts/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+	    <script type="text/javascript" src="Scripts/bootstrap/angular-bootstrap-checkbox.js"></script>
+	    
+	     <script type="text/javascript" src="Scripts/angular/ng-prettyjson.js"></script>
+  		<script type="text/javascript" src="Scripts/angular/ng-prettyjson-tmpl.js"></script> 
+
+         <!-- for datepicker-->     	
+   		<script type="text/javascript" src="Scripts/jquery/jquery-1.10.2.1.js"></script>   
+    	 
+	    <script type="text/javascript" src="Scripts/datagrid/js/jquery.dataTables.rowGrouping.js"></script>
+    	<script type="text/javascript" src="Scripts/datagrid/js/secl.dataTable.groupSummary.js"></script>  
+    	  
+	    <script type="text/javascript" src="Scripts/highchart/highcharts.js"></script>
+	    <script type="text/javascript" src="Scripts/highchart/highcharts-3d.js"></script>
+	    <script type="text/javascript" src="Scripts/highchart/highcharts-ng.js"></script>
+	    
+	    <script type="text/javascript" src="Scripts/other/moment.js"></script>
+	    <script type="text/javascript" src="Scripts/other/moment-range.js"></script>
+	    
+	   <!--  <script type="text/javascript" src="Scripts/other/daterangepicker.js"></script> -->
+	    <script type="text/javascript" src="Scripts/other/date.js"></script> 
+	    <script type="text/javascript" src="Scripts/handsontable/jquery.handsontable.full.js"></script>
+	    
+	     <!-- fullcalendar-2.1.1 -->		
+		<script type="text/javascript" src="Scripts/angular-ui-calendar/calendar.js"></script>
+		<script type="text/javascript" src="Scripts/fullcalendar/fullcalendar.js"></script>
+		<script type="text/javascript" src="Scripts/fullcalendar/gcal.js"></script>
+		
+	    <!-- AdminLTE Template js (for sidebar mainly) -->
+	    <!-- <script type="text/javascript" src="Scripts/AdminLTE/AdminLTE.js"></script> -->
+	    
+	     <!-- Load custom scripts via RequireJS -->
+	    <script src="Scripts/require/require.js" data-main="Scripts/main"></script>
+	   
+	   	<!-- Lib CSS -->
+		<link rel="stylesheet" type="text/css" href="css/lib/loader.css"/>
+		<link rel="stylesheet" type="text/css" href="css/lib/daterangepicker-bs3.css" />
+    	<link rel="stylesheet" type="text/css" href="css/lib/bootstrap-responsive.css" />
+    	<link rel="stylesheet" type="text/css" href="css/animate.css"/>
+    	<link rel="stylesheet" type="text/css" href="css/lib/animations.css"/>
+    	<link rel="stylesheet" type="text/css" href="css/lib/select2.css"/>
+    	<link rel="stylesheet" type="text/css" href="css/lib/ng-table.css"/>    	
+    	<link rel="stylesheet" type="text/css" href="css/lib/datepicker.css"  /> 
+    	<link rel="stylesheet" type="text/css" href="css/lib/jquery.datetimepicker.css"  />  
+    	<link rel="stylesheet" type="text/css" href="css/lib/jquery-clockpicker.css"/>
+    	<link rel="stylesheet" type="text/css" href="css/ngProgress.css"/> 
+    	<link rel="stylesheet" type="text/css" href="css/box-colored.css"/> 
+    	
+    	<!-- <link rel="stylesheet" type="text/css" href="css/lib/form-elements.css"/>
+    	<link rel="stylesheet" type="text/css" href="css/lib/style.css"/> -->
+    	
+    	
+    	 <link rel="stylesheet" type="text/css" href="css/lib/ng-prettyjson.css"/>
+    	 
+    	 <!-- for datepicker css--> 	
+    	<!-- <link rel="stylesheet" type="text/css" href="css/lib/jquery-ui.css"/> -->
+    	
+    	
+		<!-- bootstrap 3.0.2 -->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />        
+        <link rel="stylesheet" type="text/css" href="css/lib/bootstrap-switch.min.css" />
+        <!-- Full Calendar style -->
+        <link rel="stylesheet" type="text/css" href="css/lib/fullcalendar.css" />
+        <!-- font Awesome -->
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+        <!-- Ionicons -->
+        <link rel="stylesheet" type="text/css" href="css/ionicons.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/app/modal.css" />
+        <!-- Data Gird -->
+        <!-- <link rel="stylesheet" type="text/css" href="css/lib/datagrid.css" /> -->
+        <link rel="stylesheet" type="text/css" href="css/lib/customgrid.css" />
+        <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap.css" />
+        <!-- Theme style -->
+        <link rel="stylesheet" type="text/css" href="css/AdminLTE.css" />
+        <!-- Custom style -->
+        <link rel="stylesheet" type="text/css" href="css/app/custom.css" />
+        <!-- Handson Table -->
+        <link rel="stylesheet" type="text/css" href="css/lib/jquery.handsontable.full.css" />
+        <!-- semantic -->
+        <link rel="stylesheet" type="text/css" href="css/semantic/semantic.css" />
+
+	   
+	  		
+		
+	</head>
+	
+	<body class="skin-blue" ng-class="{ 'body-bg-img' : !layout.leftPanel.isVisible}">
+	
+		<header class="header" data-ng-show="layout.header.isVisible" data-ng-include="layout.header.location">
+		</header>
+		
+		<div class="wrapper row-offcanvas row-offcanvas-left" style="min-height: 300px;" ng-class="{ 'active relative': true == isMobile }">
+			
+			<!-- Left side column. contains the logo and sidebar  animated fadeInLeft -->
+			<aside class="left-side sidebar-offcanvas" ng-class="{ 'collapse-left': false == layout.leftPanel.isVisible }" data-ng-include="layout.leftPanel.location">
+			</aside>
+		
+			<!-- Right side column. Contains the navbar and content of the page -->
+			<aside class="right-side view-slide-in"  id="content" ng-class="{ 'strech': false == layout.leftPanel.isVisible }" data-ng-view>
+			</aside>
+			<!-- /.right-side -->
+			
+		</div>
+		<div id="sticky_footer_push" ng-class="{'sticky-foot-bg-color' : layout.leftPanel.isVisible}"></div>
+		<!-- <footer class="footer" data-ng-show="layout.footer.isVisible" data-ng-include="layout.footer.location">
+		</footer> -->
+			
+		<!-- Loading Window -->
+	    <div id="overlay" class="web_dialog_overlay"></div>
+	    <div id="dialog" class="web_dialog"></div>
+	    
+	
+	</body>
+	
+</html>

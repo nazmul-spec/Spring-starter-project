@@ -1,0 +1,30 @@
+
+
+<div class="modal-header modal-header-confirm">
+	<h4 class="modal-title ng-binding">
+		{{modalOptions.headerText}}
+	</h4>
+</div>
+
+<div class="modal-body">
+  <h4> <label>{{modalOptions.bodyText}}</label> </h4> 
+   <span ng-show="modalOptions.getRejectionReason">
+   		<div class="form-group">
+            <label for="inputRejectionReason"><span class="red"> * </span><span  i18n="inputRejectionReason"></span></label>
+            <textarea data-ng-model="modalOptions.data.rejectionCause" type="text" class="form-control" maxlength="100" placeholder="{{ 'inputRejectionReason' | i18n }}" id="inputRejectionReason"></textarea>
+        </div>
+   </span> 
+</div>
+ <div class="modal-footer">
+		
+		<span ng-hide="modalOptions.getRejectionReason">
+			<button class="btn btn-deafult" ng-click="modalOptions.close()"><i class="fa fa-times"></i>&nbsp; {{modalOptions.closeButtonText}}</button>
+			<button type="submit" class="btn btn-warning" 
+					ng-click="modalOptions.ok()"><i class="glyphicon glyphicon-ok"></i>&nbsp;{{modalOptions.actionButtonText}}</button>
+		</span>
+		<span ng-show="modalOptions.getRejectionReason">
+			<button class="btn btn-deafult" ng-click="modalOptions.close()"><i class="fa fa-times"></i>&nbsp; <span  i18n="btn_Cancel"></span></button>
+			<button type="submit" class="btn btn-danger" 
+					ng-click="modalOptions.ok()"><i class="glyphicon glyphicon-ok"></i>&nbsp;<span  i18n="btn_Reject"></span></button>
+		</span>
+</div>

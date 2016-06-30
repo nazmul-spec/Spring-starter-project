@@ -1,0 +1,82 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+	<h1 i18n="{{title.value}}"></h1>
+	<ol class="breadcrumb">
+		<li>
+			<a style="cursor: pointer;" data-ng-controller="appLogoController" data-ng-click="goToHomePage()">
+				<span  i18n="Home"></span>
+			</a>
+		</li>
+		<li class="active" i18n="{{title.value}}"></li>
+	</ol>
+	
+</section>
+
+<section class="content">
+		<div class="row">
+			<div class="col-xs-12">
+   				<div data-ng-include="messagePageLocation"></div>
+  			</div> 
+			<div class="panel panel-default">				
+				<div class="col-md-12" data-ng-show="canShowTable" style="top: 22px;">				    
+					<div  style="margin-bottom: 0px;">
+						<div class="row navbar-header" style="float:right !important;">
+							<div class="col-sm-8 col-md-8 col-lg-11">
+								<a class="navbar-brand" style="color:#FFF;">CBS Account List</a>
+							</div>
+							<div class="col-sm-4 col-md-4 col-lg-1">
+								<input class="form-control pull-right"
+									style="margin: 7px 7px 0 0; width: 200px" type="text"
+									name="searchMovies" placeholder="SEARCH ALL"
+									ng-model="search.term" ng-click="tableParams.sorting({})" />
+							</div>
+						</div>
+					</div>
+					<script type="text/ng-template" id="headerCheckbox.html">
+						<p>Approval</p>
+    					<input type="checkbox" ng-model="checkboxes.checked" ng-change="checkAll(checkboxes.checked)" class="select-all" value="" />
+  					</script>
+					<table ng-table="tableParams" class="table table-condensed table-bordered table-striped">
+				        <tr ng-repeat="row in $data">
+				          <td data-title="'Account No'" sortable="'accountno'" filter="{ 'accountno': 'text'} ">
+				              {{row.accountno}}				              
+				          </td>
+				          <td data-title="'Account Short Name'" sortable="'accountshortname'" filter="{ 'accountshortname': 'text'} ">
+				              {{row.accountshortname}}
+				          </td>
+				          <td data-title="'Account Title'" sortable="'accounttitle'" filter="{ 'accounttitle': 'text'} ">
+				              {{row.accounttitle}}
+				          </td>
+				          <td data-title="'Account Status'" sortable="'accountstatus'" filter="{ 'accountstatus': 'text'} ">
+				              {{row.accountstatus}}
+				          </td>
+				          <td data-title="'Branch ID'" sortable="'branchid'" filter="{ 'branchid': 'text'} ">
+				              {{row.branchid}}
+				          </td>
+				          <td data-title="'Currency Code'" sortable="'currencycode'" filter="{ 'currencycode': 'text'} ">
+				              {{row.currencycode}}
+				          </td>
+				          <td data-title="'Current Balance'" sortable="'currentbalance'" filter="{ 'currentbalance': 'text'} ">
+				              {{row.currentbalance}}
+				          </td>
+				          <td data-title="'Customer ID'" sortable="'customerid'" filter="{ 'customerid': 'text'} ">
+				              {{row.customerid}}
+				          </td>
+				          <td data-title="'Product ID'" sortable="'productid'" filter="{ 'productid': 'text'} ">
+				              {{row.productid}}
+				          </td>
+				          <td data-title="'Opening Date'" sortable="'openingdate'" >
+				              {{row.openingdate|date:'MM/dd/yy'}}
+				          <td data-title="'Scheme Code'" sortable="'schemecode'" filter="{ 'schemecode': 'text'} ">
+				              {{row.schemecode}}
+				          </td>
+				          <td  data-header="'headerCheckbox.html'">
+				              <input type="checkbox" id="chkApprove{{$index}}" name="chkApprove{{$index}}" data-ng-model="approval" data-ng-checked="row.accountstatus == 'UA'" data-ng-change="change($index,row)" />
+				          </td>  				          
+				          
+				        </tr>
+				      </table>
+				    </div>
+				
+			</div><!-- End of Panel -->
+</section>

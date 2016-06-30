@@ -1,0 +1,119 @@
+
+
+<div class="modal-header modal-header-confirm">
+	<h4 class="modal-title ng-binding">
+		{{modalOptions.headerText}}
+	</h4>
+</div>
+
+<div class="modal-body">
+	<div class="row">
+		<p class="col-xs-12 text-primary">
+			<span data-ng-if="modalOptions.data.msgFlag == 'N'"><span i18n="RF1000"></span></span>
+			<span data-ng-if="modalOptions.data.msgFlag == 'T'"><span  i18n="STGET10"></span></span>
+		</p>
+	</div>
+	
+  <h4> <label>Current Status : </label>
+  <span data-ng-show="modalOptions.showChangeStatusText">
+	  <b data-ng-if="modalOptions.data.status=='WD'"> <span  style="color:green">Working Day</span></b>
+	  <b data-ng-if="modalOptions.data.status=='WE'"> <span  style="color:red">Weedend</span></b>
+	  <b data-ng-if="modalOptions.data.status=='HD'"> <span  style="color:red">Holiday</span></b>
+  </span> ({{modalOptions.data.effectiveDate}})
+  <div class="row">
+  	<div class="col-md-12">
+  		 <div class="form-group">
+             <label for="policyName"><span class="red"> * </span><span  i18n="Name"></span></label>
+             <input autocomplete="off" data-ng-model="modalOptions.data.name" type="text" class="form-control" maxlength="100" id="policyName" placeholder="{{ 'Name' | i18n }}">
+         </div>
+         <div class="form-group">
+             <label for="description"><span  i18n="Description"></span></label>
+             <textarea data-ng-model="modalOptions.data.description" class="form-control" maxlength="200" rows="3" placeholder="{{ 'Description' | i18n }}" id="description"></textarea>
+         </div>
+  	</div>
+  </div>
+  
+  <!-- Change Working Day --> 
+  <div data-ng-if="modalOptions.data.status=='WD'">
+	  <label>
+	    <input type="radio" data-ng-model="modalOptions.data.newStatus" value="HD">
+	    Change to Holiday 
+	  </label>
+	  
+	<label>
+	    <input type="radio" data-ng-model="modalOptions.data.newStatus" value="WD">
+	    Change Time
+	</label>
+	
+  	<div class="col-md-12" data-ng-if="'WD' == modalOptions.data.newStatus">
+		<table class="table">
+			<thead>
+				<tr>
+					<th i18n="Start_Time"></th>
+					<th i18n="End_Time"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="one in modalOptions.data.oneRepeat" repeat-end="onEnd()">
+					<td>
+						<div data-ng-show="!weekend.enabled" class="input-group clockpicker" data-autoclose="true">
+						    <input data-ng-model="modalOptions.data.startTime" type="text" readonly class="form-control read-only-clock">
+						    <span class="input-group-addon">
+						        <span class="glyphicon glyphicon-time"></span>
+						    </span>
+						</div>
+					</td>
+					<td>
+						<div data-ng-show="!weekend.enabled" class="input-group clockpicker" data-autoclose="true">
+						    <input data-ng-model="modalOptions.data.endTime" type="text" readonly class="form-control read-only-clock">
+						    <span class="input-group-addon">
+						        <span class="glyphicon glyphicon-time"></span>
+						    </span>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+     </div>
+  </div>
+  
+   <!-- Change Holicay/week end Day --> 
+  <div data-ng-if="modalOptions.data.status=='WE' || modalOptions.data.status=='HD'">
+  		<div class="col-md-12" data-ng-init="modalOptions.data.newStatus = 'WD'">
+  		
+		<table class="table">
+			<thead>
+				<tr>
+					<th i18n="Start_Time"></th>
+					<th i18n="End_Time"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="one in modalOptions.data.oneRepeat" repeat-end="onEnd()">
+					<td>
+						<div data-ng-show="!weekend.enabled" class="input-group clockpicker" data-autoclose="true">
+						    <input data-ng-model="modalOptions.data.startTime" data-ng-init="modalOptions.data.startTime = '09:30'" type="text" readonly class="form-control read-only-clock">
+						    <span class="input-group-addon">
+						        <span class="glyphicon glyphicon-time"></span>
+						    </span>
+						</div>
+					</td>
+					<td>
+						<div data-ng-show="!weekend.enabled" class="input-group clockpicker" data-autoclose="true">
+						    <input data-ng-model="modalOptions.data.endTime" data-ng-init="modalOptions.data.endTime = '17:30'" type="text" readonly class="form-control read-only-clock">
+						    <span class="input-group-addon">
+						        <span class="glyphicon glyphicon-time"></span>
+						    </span>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+     </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+ <div class="modal-footer">
+		<button class="btn btn-deafult" ng-click="modalOptions.close()"><i class="fa fa-times"></i>&nbsp; {{modalOptions.closeButtonText}}</button>
+		<button type="submit" class="btn btn-warning" ng-click="modalOptions.ok()"><i class="glyphicon glyphicon-ok"></i>&nbsp;{{modalOptions.actionButtonText}}</button>
+</div>

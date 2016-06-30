@@ -1,0 +1,24 @@
+
+
+<div class="modal-header modal-header-confirm">
+	<h4 class="modal-title ng-binding">
+		{{modalOptions.headerText}}
+	</h4>
+</div>
+
+<div class="modal-body">
+  <h4> <label>{{modalOptions.bodyText}}</label>
+  <span ng-show="modalOptions.showChangeStatusText">
+	  <b data-ng-if="modalOptions.data.status=='Inactive'"> from <span  style="color:red">Inactive</span> to<span style="color:green"> Active</span></b>
+	  <b data-ng-if="modalOptions.data.status=='I'"> from <span  style="color:red">Inactive</span> to<span style="color:green"> Active</span></b>
+	  <b data-ng-if="modalOptions.data.status=='Active'"> from <span  style="color:green">Active</span> to<span style="color:red"> Inactive</span> </b>
+	  <b data-ng-if="modalOptions.data.status=='A'"> from <span  style="color:green">Active</span> to<span style="color:red"> Inactive</span> </b>
+  </span>
+  (<b> {{modalOptions.id}}</b>) ?</h4>
+  
+  
+</div>
+ <div class="modal-footer">
+		<button class="btn btn-deafult" ng-click="modalOptions.close()"><i class="fa fa-times"></i>&nbsp; {{modalOptions.closeButtonText}}</button>
+		<button type="submit" class="btn btn-warning" ng-click="modalOptions.ok()"><i class="glyphicon glyphicon-ok"></i>&nbsp;{{modalOptions.actionButtonText}}</button>
+</div>

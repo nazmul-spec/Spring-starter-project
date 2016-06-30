@@ -1,0 +1,158 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+	<h1 i18n="{{title.value}}"></h1>
+	<ol class="breadcrumb">
+		<li><a style="cursor: pointer;"
+			data-ng-controller="appLogoController" data-ng-click="goToHomePage()">
+				<!-- <i class="fa fa-dashboard"></i > --> <span i18n="Home"></span>
+		</a></li>
+		<li i18n="Security_AdminUser" data-ng-click="goBack()"
+			style="cursor: pointer;"></li>
+		<li class="active" i18n="{{title.value}}"></li>
+	</ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+	<!-- Msg Location -->
+	<div class="row" style="margin-top: 20px;">
+		<div class="col-xs-12">
+			<div data-ng-include="messagePageLocation"></div>
+		</div>
+	</div>
+	<!-- End Msg Location -->
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="box box-primary">
+				<!-- form start -->
+				<form role="form">
+					<div class="box-body">
+						<div class="form-group">
+							<label for="InputLoginId"><span class="red"> * </span><span
+								i18n="LoginID"></span></label> 
+							<input data-ng-model="user.loginId" autocomplete="off"
+								type="text" class="form-control"
+								placeholder="{{ 'LoginID' | i18n }}" id="InputLoginId"
+								data-ng-disabled="isFieldDisabled.loginId">
+						</div>
+						<div class="form-group">
+							<label for="InputEmail"><span class="red"> * </span><span
+								i18n="Email"></label> 
+							<input data-ng-model="user.email" autocomplete="off"
+								type="text" class="form-control" id="InputEmail"
+								placeholder="{{ 'Email' | i18n }}">
+						</div>
+						<div class="form-group">
+							<label for="InputMobile" i18n="Mobile_No"></label> 
+							<input autocomplete="off"
+								data-ng-model="user.mobileNo" type="text" class="form-control"
+								id="InputMobile" placeholder="{{ 'Mobile_No' | i18n }}">
+						</div>
+						<div class="form-group">
+							<label for="selectRole"><span class="red"> * </span><span
+								i18n="Role"></span></label> 
+							<select data-ng-model="user.role"
+								class="form-control" id="selectRole" ui-select2
+								placeholder="{{ 'SelectRole' | i18n }}"
+								data-ng-change="onRoleSelect()">
+								<option></option>
+								<option data-ng-selected="{{ roleInfo.id === user.role }}"
+									data-ng-repeat="roleInfo in roleInfos"
+									value="{{ roleInfo.id }}">{{ roleInfo.value }}</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="selectBankName"><span class="red"> *
+							</span><span i18n="Bank_Name"></span></label> 
+							<select
+								data-ng-model="user.bankID" class="form-control"
+								id="selectBankName" ui-select2
+								placeholder="{{ 'SelectBank' | i18n }}"
+								data-ng-disabled="isFieldDisabled.bankID"
+								data-ng-change="loadBranchInformation()">
+								<option></option>
+								<option data-ng-selected="{{ bankInfo.bankID == user.bankID }}"
+									data-ng-repeat="bankInfo in bankInfos"
+									value="{{bankInfo.bankID}}">{{bankInfo.bankName}}</option>
+							</select>
+						</div>
+						<span ng-show="isBlockShow.bankBranch">
+							<div class="form-group">
+								<label for="selectBranchName"><span class="red">
+										* </span><span i18n="Branch_Name"></span></label> 
+								<select
+									data-ng-model="user.branchID" class="form-control"
+									id="selectBranchName" ui-select2
+									placeholder="{{ 'SelectBranch' | i18n }}"
+									data-ng-disabled="isFieldDisabled.branchID">
+									<option></option>
+									<option
+										data-ng-selected="{{ branchInfo.branchID == user.branchID }}"
+										data-ng-repeat="branchInfo in branchInfos"
+										value="{{branchInfo.branchID}}">{{branchInfo.branchName}}</option>
+								</select>
+							</div>
+						</span>
+
+						<div class="form-group">
+							<label for="selectStatus"><span class="red"> * </span><span
+								i18n="Status"></span></label> 
+							<select data-ng-model="user.status"
+								class="form-control" id="selectStatus" ui-select2
+								placeholder="{{ 'SelectStatus' | i18n }}">
+								<option></option>
+								<option data-ng-selected="{{ statusInfo.id === user.status }}"
+									data-ng-repeat="statusInfo in statusInfos"
+									value="{{ statusInfo.id }}">{{ statusInfo.value }}</option>
+							</select>
+						</div>
+						<span data-ng-show="isBlockShow.password">
+							<div class="form-group">
+								<label for="InputPassword"><span class="red"> * </span><span i18n="password"></span></label> 
+								<input data-ng-model="user.password" autocomplete="off"
+									type="password" class="form-control" id="InputPassword"
+									data-ng-disabled="isFieldDisabled.password"
+									placeholder="{{ 'password' | i18n }}"
+									data-ng-change="changeInputField(passFieldValidationResult)" data-ng-blur="leaveInputField(passFieldValidationResult)">
+								<span i18n="{{passFieldValidationResult.fieldMsg}}" data-ng-show ="passFieldValidationResult.showMsg" data-ng-style="passFieldValidationResult.fieldMsgStyle"></span>
+							</div>
+							<div class="form-group">
+								<label for="inputConfirmPassword"><span class="red"> * </span><span i18n="Confirm_Password"></span></label> 
+								<input data-ng-model="user.confirmPassword" autocomplete="off" type="password"
+									class="form-control" id="inputConfirmPassword"
+									data-ng-disabled="isFieldDisabled.password"
+									placeholder="{{ 'Confirm_Password' | i18n }}"
+									data-ng-change="changeInputField(confirmPassFieldValidationResult)" data-ng-blur="leaveInputField(confirmPassFieldValidationResult)">
+								<span i18n="{{confirmPassFieldValidationResult.fieldMsg}}" data-ng-show ="confirmPassFieldValidationResult.showMsg" data-ng-style="confirmPassFieldValidationResult.fieldMsgStyle"></span>
+							</div>
+						</span>
+
+					</div>
+					<!-- /.box-body -->
+
+					<div class="box-footer">
+						<div class="row">
+							<div class="col-sm-3">
+								<button type="submit" class="btn btn-success FormOptions"
+									ng-click="saveOrUpdate(user)" i18n="{{btn_save_up}}"></button>
+							</div>
+							<span ng-show="isBlockShow.resetButton">
+								<div class="col-sm-3">
+									<button class="btn FormOptions" data-ng-click="reset()"
+										i18n="btn_Common_Reset"></button>
+								</div>
+							</span>
+							<div class="col-sm-3">
+								<button class="btn FormOptions" data-ng-click="goBack()"
+									i18n="btn_Back"></button>
+							</div>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+</section>

@@ -1,0 +1,22 @@
+
+
+<div class="modal-header modal-header-confirm">
+	<h4 class="modal-title ng-binding">
+		{{modalOptions.headerText}}
+	</h4>
+</div>
+
+<div class="modal-body">
+  <div><h4>{{modalOptions.bodyText}}</h4></div>  
+</div>
+ <div class="modal-footer">
+		
+		<span ng-hide="modalOptions.confirmationModal">
+			<button type="submit" class="btn btn-warning" 
+					ng-click="modalOptions.ok()"><i class="glyphicon glyphicon-ok"></i>&nbsp;{{modalOptions.actionButtonText}}</button>
+		</span>
+		<span ng-show="modalOptions.confirmationModal">			
+			<button type="submit" class="btn btn-warning" 
+					ng-click="modalOptions.ok()"><i class="glyphicon glyphicon-ok"></i>&nbsp;{{modalOptions.actionButtonText}}</button>
+		</span>
+</div>

@@ -1,0 +1,69 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:jee="http://www.springframework.org/schema/jee"
+  xmlns:util="http://www.springframework.org/schema/util"
+  xmlns:tx="http://www.springframework.org/schema/tx"
+  xmlns:security="http://www.springframework.org/schema/security"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+		   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+           http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<context:annotation-config />
+	
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	
+	
+	<!-- spring security -->
+	<!-- INIT REST COMPONENTS -->
+	<context:component-scan base-package="net.myapp.springsecurity.rest.service" />
+	
+	
+	
+	<import resource="DataSource.xml"/>
+	<import resource="Bean.xml"/>
+	
+	
+	<bean id="objectMapper" class="org.codehaus.jackson.map.ObjectMapper" />
+	
+	<!-- SPRING SECURITY SETUP -->
+	<bean id="passwordEncoder" class="net.myapp.springsecurity.dal.sha1encryptor.PasswordEncryptor" />
+	
+	<bean id="unauthorizedEntryPoint" class="net.myapp.springsecurity.dal.springsecurity.security.UnauthorizedEntryPoint" />
+
+	<bean class="net.myapp.springsecurity.dal.springsecurity.security.AuthenticationTokenProcessingFilter" id="authenticationTokenProcessingFilter">
+		<constructor-arg ref="userDao" />
+	</bean>
+	
+	<security:authentication-manager id="authenticationManager">
+		<security:authentication-provider user-service-ref="userDao">
+			<security:password-encoder ref="passwordEncoder"></security:password-encoder>
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+	<security:http
+			realm="Protected API"
+			use-expressions="true"
+			auto-config="false"
+			create-session="stateless"
+			entry-point-ref="unauthorizedEntryPoint"
+			authentication-manager-ref="authenticationManager">
+		<security:custom-filter ref="authenticationTokenProcessingFilter" position="FORM_LOGIN_FILTER" />
+		<security:intercept-url method="POST" pattern="/rest/login/*" 						access="permitAll" />
+		<security:intercept-url method="POST" pattern="/rest/duplicteValidation" 			access="permitAll" />
+		
+		<security:intercept-url method="POST" pattern="/rest/user" 							access="hasAnyRole('SA','Admin','ABD.Sys.Maker','ABD.Sys.Checker')" />
+		<security:intercept-url method="POST" pattern="/rest/dashboard/systemData" 			access="hasAnyRole('SA','Admin','ABD.Sys.Maker','ABD.Sys.Checker','ABD.Maker','ABD.Checker')" />
+		
+		
+	</security:http>
+
+</beans> 

@@ -1,0 +1,101 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+	<h1 i18n="{{title.value}}"></h1>
+	<ol class="breadcrumb">
+		<li>
+			<a style="cursor: pointer;" data-ng-controller="appLogoController" data-ng-click="goToHomePage()">
+				<span  i18n="Home"></span>
+			</a>
+		</li>
+		<li class="active" i18n="{{title.value}}"></li>
+	</ol>
+	
+</section>
+
+<section class="content">
+		<div class="row" style="margin-top: 20px;">
+  			<div class="col-xs-12">
+   				<div data-ng-include="messagePageLocation"></div>
+  			</div>
+ 		</div>
+		<div class="row"> 
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<strong>Upload CBS Account Files</strong> 
+				</div>
+				<div class="panel-body">
+
+					<!-- Standar Form -->
+					<h4>Select files from your computer</h4>
+					<form  method="post" enctype="multipart/form-data"
+						id="js-upload-form" ng-submit="continueFileUpload()">
+						<div class="form-inline">
+							<div class="form-group">
+								<!-- <input type="file" name="files[]" id="js-upload-files"
+								onchange="angular.element(this).scope().uploadFiles(this,event)"  multiple> -->
+								<!-- <input  type="file" name="file" ng-model="file" data-rule-required="true" id="file" 
+								        accept=".txt"> -->
+								<input  type="file" name="file" ng-model="file"  id="file" data-rule-required="true" accept=".xls,.xlsx">
+							</div>
+							<button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Upload files</button>							
+						</div>
+					</form>			   
+
+
+				</div><!-- End of Panel Body -->
+				
+				<div class="col-md-12" data-ng-show="canShowTable" style="top: 22px;">				    
+					<div  style="margin-bottom: 0px;">
+						<div class="row navbar-header" style="float:right !important;">
+							<div class="col-sm-8 col-md-8 col-lg-11">
+								<a class="navbar-brand" style="color:#FFF;">CBS Account List</a>
+							</div>
+							<div class="col-sm-4 col-md-4 col-lg-1">
+								<input class="form-control pull-right"
+									style="margin: 7px 7px 0 0; width: 200px" type="text"
+									name="searchMovies" placeholder="SEARCH ALL"
+									ng-model="search.term" ng-click="tableParams.sorting({})" />
+							</div>
+						</div>
+					</div>
+					<table ng-table="tableParams" class="table table-condensed table-bordered table-striped">
+				        <tr ng-repeat="row in $data">
+				          <td data-title="'Account No'" sortable="'accountno'" filter="{ 'accountno': 'text'} ">
+				              {{row.accountno}}				              
+				          </td>
+				          <td data-title="'Account Short Name'" sortable="'accountshortname'" filter="{ 'accountshortname': 'text'} ">
+				              {{row.accountshortname}}
+				          </td>
+				          <td data-title="'Account Title'" sortable="'accounttitle'" filter="{ 'accounttitle': 'text'} ">
+				              {{row.accounttitle}}
+				          </td>
+				          <td data-title="'Account Status'" sortable="'accountstatus'" filter="{ 'accountstatus': 'text'} ">
+				              {{row.accountstatus}}
+				          </td>
+				          <td data-title="'Branch ID'" sortable="'branchid'" filter="{ 'branchid': 'text'} ">
+				              {{row.branchid}}
+				          </td>
+				          <td data-title="'Currency Code'" sortable="'currencycode'" filter="{ 'currencycode': 'text'} ">
+				              {{row.currencycode}}
+				          </td>
+				          <td data-title="'Current Balance'" sortable="'currentbalance'" filter="{ 'currentbalance': 'text'} ">
+				              {{row.currentbalance}}
+				          </td>
+				          <td data-title="'Customer ID'" sortable="'customerid'" filter="{ 'customerid': 'text'} ">
+				              {{row.customerid}}
+				          </td>
+				          <td data-title="'Product ID'" sortable="'productid'" filter="{ 'productid': 'text'} ">
+				              {{row.productid}}
+				          </td>
+				          <td data-title="'Opening Date'" sortable="'openingdate'" >
+				              {{row.openingdate|date:'MM/dd/yy'}}
+				          <td data-title="'Scheme Code'" sortable="'schemecode'" filter="{ 'schemecode': 'text'} ">
+				              {{row.schemecode}}
+				          </td>			           				          
+				          
+				        </tr>
+				      </table>
+				    </div>
+				
+			</div><!-- End of Panel -->
+</section>
